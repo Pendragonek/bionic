@@ -1,0 +1,14 @@
+{
+  "water": {
+    "name": "Water",
+    "SHC": 4.179
+  },
+  "polluted_water": {
+    "name": "Polluted Water",
+    "SHC": 4.179
+  },
+  "carbon_dioxide": {
+    "name": "Carbon Dioxide",
+    "SHC": 0.846
+  }
+}
