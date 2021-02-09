@@ -6,4 +6,4 @@ from dataclasses import dataclass
 class Element:
     """Element dataclass"""
     name: str
-    shc: int
+    shc: float
