@@ -14,6 +14,6 @@ def calculate_temperature_delta(shc: float, mass: float, heat_amount: float) -> 
 def calculate_combined_temperature(shc1: float, mass1: float, temperature1: float,
                                    shc2: float, mass2: float, temperature2: float) -> float:
     """Calculate combined temperature, the result of mixing two elements temperature"""
-    total_heat_amount = calculate_heat_amount(shc1, mass1, temperature1) + calculate_heat_amount(shc2, mass2,
-                                                                                                 temperature2)
-    return total_heat_amount / (shc1 * mass1 + shc2 * mass2)
+    heat_amount1 = calculate_heat_amount(shc1, mass1, temperature1)
+    heat_amount2 = calculate_heat_amount(shc2, mass2, temperature2)
+    return (heat_amount1 + heat_amount2) / (shc1 * mass1 + shc2 * mass2)
