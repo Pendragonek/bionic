@@ -1,4 +1,6 @@
 """Test heat calculations"""
+import pytest
+
 from bionic.heat import calculate_heat_amount, calculate_temperature_delta, calculate_combined_temperature
 
 
@@ -18,34 +20,14 @@ def test_calculate_temperature_delta():
     assert temperature_delta == 2.5
 
 
-def test_calculate_combined_temperature():
-    shc1 = 2.400
-    mass1 = 1000
-    temperature1 = 10
-    shc2 = 2.400
-    mass2 = 1000
-    temperature2 = 40
+@pytest.mark.parametrize(
+    "shc1, mass1, temperature1, shc2, mass2, temperature2, expected",
+    [
+        (2.400, 1000, 10, 2.400, 1000, 40, 25),
+        (2.400, 1000, 10, 2.400, 4000, 40, 34),
+        (2.400, 5000, 10, 1.000, 4000, 40, 17.5),
+    ]
+)
+def test_calculate_combined_temperature(shc1, mass1, temperature1, shc2, mass2, temperature2, expected):
     combined_temperature = calculate_combined_temperature(shc1, mass1, temperature1, shc2, mass2, temperature2)
-    assert combined_temperature == 25
-
-
-def test_calculate_combined_temperature_different_mass():
-    shc1 = 2.400
-    mass1 = 1000
-    temperature1 = 10
-    shc2 = 2.400
-    mass2 = 4000
-    temperature2 = 40
-    combined_temperature = calculate_combined_temperature(shc1, mass1, temperature1, shc2, mass2, temperature2)
-    assert combined_temperature == 34
-
-
-def test_calculate_combined_temperature_different_mass_and_shc():
-    shc1 = 2.400
-    mass1 = 5000
-    temperature1 = 10
-    shc2 = 1.000
-    mass2 = 4000
-    temperature2 = 40
-    combined_temperature = calculate_combined_temperature(shc1, mass1, temperature1, shc2, mass2, temperature2)
-    assert combined_temperature == 17.5
+    assert combined_temperature == expected
