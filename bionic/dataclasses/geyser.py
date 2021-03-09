@@ -15,6 +15,8 @@ class Geyser:
 
     def is_erupting(self, time: int) -> bool:
         """Return if geyser is erupting based on a given time"""
+        if not self.is_active(time):
+            return False
         return time % self.eruption_period < self.eruption_time
 
     def is_active(self, time: int) -> bool:
