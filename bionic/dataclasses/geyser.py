@@ -1,6 +1,8 @@
 """Geyser class"""
 from dataclasses import dataclass
 
+CYCLE_LENGTH = 600
+
 
 @dataclass
 class Geyser:
@@ -14,3 +16,7 @@ class Geyser:
     def is_erupting(self, time: int) -> bool:
         """Return if geyser is erupting based on a given time"""
         return time % self.eruption_period < self.eruption_time
+
+    def is_active(self, time: int) -> bool:
+        """Return if geyser is active based on a given time"""
+        return time % int(CYCLE_LENGTH * self.activity_period) < int(CYCLE_LENGTH * self.activity_time)
