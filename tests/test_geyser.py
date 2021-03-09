@@ -13,6 +13,6 @@ from bionic.dataclasses.geyser import Geyser
         ((4.0, 10, 20, 2.4, 4.6), 10, False),
     ]
 )
-def test_geyser_is_active(geyser_params: Tuple[float, int, int, float, float], current_time: int, expected: bool):
+def test_geyser_is_erupting(geyser_params: Tuple[float, int, int, float, float], current_time: int, expected: bool):
     geyser = Geyser(*geyser_params)
-    assert geyser.is_active(current_time) is expected
+    assert geyser.is_erupting(current_time) is expected
