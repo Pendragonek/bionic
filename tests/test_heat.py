@@ -5,6 +5,7 @@ from bionic.heat import calculate_heat_amount, calculate_temperature_delta, calc
 
 
 def test_calculate_heat_amount():
+    """Test calculation of heat amount"""
     shc = 4.179
     mass = 1000
     temperature = 10
@@ -13,6 +14,7 @@ def test_calculate_heat_amount():
 
 
 def test_calculate_temperature_delta():
+    """Test calculation of temperature delta"""
     shc = 2.400
     mass = 1000
     heat_amount = 6000
@@ -29,5 +31,6 @@ def test_calculate_temperature_delta():
     ]
 )
 def test_calculate_combined_temperature(shc1, mass1, temperature1, shc2, mass2, temperature2, expected):
+    """Test calculation of combined temperature"""
     combined_temperature = calculate_combined_temperature(shc1, mass1, temperature1, shc2, mass2, temperature2)
     assert combined_temperature == expected

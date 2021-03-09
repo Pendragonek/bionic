@@ -9,7 +9,8 @@ from bionic.dataclasses.entity import Entity, calculate_combined_entity_temperat
 TEST_ELEMENT_NAME = "Test Element"
 
 
-def test_heat():
+def test_entity_heat():
+    """Test entity heat"""
     shc = 4.179
     mass = 1000
     temperature = 10
@@ -28,6 +29,7 @@ def test_heat():
     ]
 )
 def test_calculate_combined_entity_temperature(params_list: List[Tuple[float, float, float]], expected: float):
+    """Test calculate combined entity temperature"""
     entity_list = list()
     for params in params_list:
         element = Element(TEST_ELEMENT_NAME, params[0])

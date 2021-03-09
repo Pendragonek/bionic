@@ -14,6 +14,7 @@ from bionic.dataclasses.geyser import Geyser
     ]
 )
 def test_geyser_is_erupting(geyser_params: Tuple[float, int, int, float, float], current_time: int, expected: bool):
+    """Test geyser is erupting"""
     geyser = Geyser(*geyser_params)
     assert geyser.is_erupting(current_time) is expected
 
@@ -26,5 +27,6 @@ def test_geyser_is_erupting(geyser_params: Tuple[float, int, int, float, float],
     ]
 )
 def test_geyser_is_active(geyser_params: Tuple[float, int, int, float, float], current_time: int, expected: bool):
+    """Test geyser is active"""
     geyser = Geyser(*geyser_params)
     assert geyser.is_active(current_time) is expected
