@@ -45,3 +45,18 @@ def test_entity_bank_add(initial_state: List[Entity], added_entity: Entity, expe
     entity_bank = EntityBank(*initial_state)
     entity_bank.add(added_entity)
     assert entity_bank.entity_dict == EntityBank(*expected_state).entity_dict
+
+
+@pytest.mark.parametrize(
+    "initial_state, added_entity, expected_state",
+    [
+        ([Entity(WATER, 2000, 50)], Entity(WATER, 1000, 50), [Entity(WATER, 1000, 50)]),
+        ([Entity(WATER, 1000, 50)], Entity(WATER, 2000, 50), []),
+        ([], Entity(WATER, 1000, 50), []),
+    ]
+)
+def test_entity_bank_remove(initial_state: List[Entity], added_entity: Entity, expected_state: List[Entity]):
+    """Test entity bank remove"""
+    entity_bank = EntityBank(*initial_state)
+    entity_bank.remove(added_entity)
+    assert entity_bank.entity_dict == EntityBank(*expected_state).entity_dict
