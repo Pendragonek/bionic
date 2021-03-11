@@ -1,7 +1,7 @@
 """Steam turbine class"""
-from typing import Dict
 
 from bionic.dataclasses import Entity
+from bionic.dataclasses.entity_bank import EntityBank
 from bionic.elements import STEAM, WATER
 
 
@@ -11,21 +11,15 @@ class SteamTurbine:
     name: str = "Steam Turbine"
     heat: float = 4
 
-    def process(self, entity_dict: Dict[str, Entity]):
+    def process(self, entity_bank: EntityBank):
         """Process elements"""
-        steam_key = STEAM.key
-        water_key = WATER.key
-        max_amount = 2000
-        if steam_key not in entity_dict:
+        max_mass = 2000
+        steam_entity = entity_bank.get(STEAM)
+        if not steam_entity.mass or steam_entity.temperature < 125:
             return
-        steam_entity = entity_dict[steam_key]
-        if steam_entity.temperature < 125:
-            return
-        if water_key not in entity_dict:
-            entity_dict[water_key] = Entity(WATER, 0, 95)
-        if steam_entity.mass <= max_amount:
-            entity_dict[water_key].mass += steam_entity.mass
-            entity_dict.pop(steam_key)
+        if steam_entity.mass <= max_mass:
+            entity_bank.add(Entity(WATER, steam_entity.mass, 95))
+            entity_bank.remove(steam_entity)
         else:
-            entity_dict[water_key].mass += max_amount
-            entity_dict[steam_key].mass -= max_amount
+            entity_bank.add(Entity(WATER, max_mass, 95))
+            entity_bank.remove(Entity(STEAM, max_mass, steam_entity.temperature))

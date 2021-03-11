@@ -26,10 +26,9 @@ class EntityBank:
 
     def remove(self, entity: Entity):
         """Remove entity from bank"""
-        if entity.key not in self.entity_dict:
+        stored_entity = self.get(entity.element)
+        if stored_entity.mass < entity.mass:
+            raise ArithmeticError
+        if stored_entity.mass == 0:
             return
-
-        stored_entity = self.entity_dict[entity.key]
         stored_entity.mass -= entity.mass
-        if stored_entity.mass < 0:
-            self.entity_dict.pop(entity.key)

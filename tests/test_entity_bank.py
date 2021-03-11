@@ -48,15 +48,28 @@ def test_entity_bank_add(initial_state: List[Entity], added_entity: Entity, expe
 
 
 @pytest.mark.parametrize(
-    "initial_state, added_entity, expected_state",
+    "initial_state, removed_entity, expected_state",
     [
         ([Entity(WATER, 2000, 50)], Entity(WATER, 1000, 50), [Entity(WATER, 1000, 50)]),
-        ([Entity(WATER, 1000, 50)], Entity(WATER, 2000, 50), []),
-        ([], Entity(WATER, 1000, 50), []),
+        ([], Entity(WATER, 0, 50), []),
     ]
 )
-def test_entity_bank_remove(initial_state: List[Entity], added_entity: Entity, expected_state: List[Entity]):
+def test_entity_bank_remove(initial_state: List[Entity], removed_entity: Entity, expected_state: List[Entity]):
     """Test entity bank remove"""
     entity_bank = EntityBank(*initial_state)
-    entity_bank.remove(added_entity)
+    entity_bank.remove(removed_entity)
     assert entity_bank.entity_dict == EntityBank(*expected_state).entity_dict
+
+
+@pytest.mark.parametrize(
+    "initial_state, removed_entity",
+    [
+        ([Entity(WATER, 1000, 50)], Entity(WATER, 2000, 50)),
+        ([], Entity(WATER, 1000, 50)),
+    ]
+)
+def test_entity_bank_remove_exception(initial_state: List[Entity], removed_entity: Entity):
+    """Test entity bank remove"""
+    entity_bank = EntityBank(*initial_state)
+    with pytest.raises(ArithmeticError):
+        entity_bank.remove(removed_entity)
