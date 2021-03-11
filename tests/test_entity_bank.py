@@ -11,10 +11,11 @@ from bionic.elements import Element, WATER
 @pytest.mark.parametrize(
     "entity_list, element, expected_entity",
     [
-        ([Entity(WATER, 1000, 50)], WATER, Entity(WATER, 1000, 50))
+        ([Entity(WATER, 1000, 50)], WATER, Entity(WATER, 1000, 50)),
+        ([], WATER, Entity(WATER, 0, 0)),
     ]
 )
 def test_entity_bank_get_item(entity_list: List[Entity], element: Element, expected_entity: float):
     """Test entity bank get amount"""
-    entity_bank = EntityBank(entity_list)
+    entity_bank = EntityBank(*entity_list)
     assert entity_bank.get(element) == expected_entity

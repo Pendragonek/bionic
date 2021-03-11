@@ -9,8 +9,8 @@ from bionic.heat import calculate_heat_amount
 class Entity:
     """ Entity class"""
     element: Element
-    mass: float
-    temperature: float
+    mass: float = 0
+    temperature: float = 0
 
     @property
     def name(self) -> str:
