@@ -3,8 +3,8 @@ from typing import List, Tuple
 
 import pytest
 
-from bionic.dataclasses import Element
-from bionic.dataclasses.entity import Entity, calculate_combined_entity_temperature
+from bionic.dataclasses import Element, Entity
+from bionic.dataclasses.entity import calculate_combined_entity_temperature
 
 TEST_ELEMENT_NAME = "Test Element"
 

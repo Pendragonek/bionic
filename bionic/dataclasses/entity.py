@@ -18,6 +18,11 @@ class Entity:
         return self.element.name
 
     @property
+    def key(self) -> str:
+        """Return key of entity element"""
+        return self.element.key
+
+    @property
     def shc(self) -> float:
         """Return SHC of entity element"""
         return self.element.shc

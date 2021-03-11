@@ -1,15 +1,18 @@
 """Test element"""
-from pathlib import Path
 
-from bionic.dataclasses import load_element_dict_from_file
+import pytest
+
+from bionic.dataclasses import Element
 
 
-def test_load_element_dict_from_file():
-    """Test loading dictionary of element from a file"""
-    test_file_path = Path("tests/resources/test_element.json")
-
-    element_dict = load_element_dict_from_file(test_file_path)
-
-    assert element_dict.keys() == {"element_key"}
-    assert element_dict["element_key"].name == "element_name"
-    assert element_dict["element_key"].shc == 1
+@pytest.mark.parametrize(
+    "element_name, expected_key",
+    [
+        ("Water", "water"),
+        ("Natural Gas", "natural_gas"),
+    ]
+)
+def test_entity_key(element_name: str, expected_key: str):
+    """Test entity key"""
+    element = Element(element_name, 1.000)
+    assert element.key == expected_key

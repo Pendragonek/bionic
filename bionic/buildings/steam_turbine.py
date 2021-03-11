@@ -1,11 +1,7 @@
 """Steam turbine class"""
 from typing import Dict
 
-from bionic.dataclasses import Element
-from bionic.dataclasses.entity import Entity
-
-STEAM = Element("Steam", 4.179)
-WATER = Element("Water", 4.179)
+from bionic.dataclasses import Entity, WATER, STEAM
 
 
 class SteamTurbine:
@@ -16,8 +12,8 @@ class SteamTurbine:
 
     def process(self, entity_dict: Dict[str, Entity]):
         """Process elements"""
-        steam_key = "steam"
-        water_key = "water"
+        steam_key = STEAM.key
+        water_key = WATER.key
         max_amount = 2000
         if steam_key not in entity_dict:
             return

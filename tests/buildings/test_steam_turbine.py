@@ -3,12 +3,12 @@ from typing import Dict
 
 import pytest
 
-from bionic.buildings.steam_turbine import SteamTurbine, STEAM, WATER
-from bionic.dataclasses.entity import Entity
+from bionic.buildings.steam_turbine import SteamTurbine
+from bionic.dataclasses import Entity, STEAM, WATER
 
 
 @pytest.mark.parametrize(
-    "starting_state, expected_state",
+    "initial_state, expected_state",
     [
         (
             {"steam": Entity(STEAM, 4000, 150), "water": Entity(STEAM, 1000, 95)},
@@ -24,7 +24,7 @@ from bionic.dataclasses.entity import Entity
         ),
     ]
 )
-def test_steam_turbine_process(starting_state: Dict[str, Entity], expected_state: Dict[str, Entity]):
+def test_steam_turbine_process(initial_state: Dict[str, Entity], expected_state: Dict[str, Entity]):
     steam_turbine = SteamTurbine()
-    steam_turbine.process(starting_state)
-    assert starting_state == expected_state
+    steam_turbine.process(initial_state)
+    assert initial_state == expected_state
