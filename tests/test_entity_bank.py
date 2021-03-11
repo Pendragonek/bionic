@@ -17,4 +17,4 @@ from bionic.elements import Element, WATER
 def test_entity_bank_get_item(entity_list: List[Entity], element: Element, expected_entity: float):
     """Test entity bank get amount"""
     entity_bank = EntityBank(entity_list)
-    assert entity_bank[element] == expected_entity
+    assert entity_bank.get(element) == expected_entity

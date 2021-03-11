@@ -17,5 +17,6 @@ class EntityBank:
         for entity in entity_list:
             self.entity_dict[entity.key] = entity
 
-    def __getitem__(self, element: Element) -> Entity:
+    def get(self, element: Element) -> Entity:
+        """Get entity based on element"""
         return self.entity_dict[element.key]
