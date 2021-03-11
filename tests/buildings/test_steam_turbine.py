@@ -4,15 +4,16 @@ from typing import Dict
 import pytest
 
 from bionic.buildings.steam_turbine import SteamTurbine
-from bionic.dataclasses import Entity, STEAM, WATER
+from bionic.dataclasses import Entity
+from bionic.elements import STEAM, WATER
 
 
 @pytest.mark.parametrize(
     "initial_state, expected_state",
     [
         (
-            {"steam": Entity(STEAM, 4000, 150), "water": Entity(STEAM, 1000, 95)},
-            {"steam": Entity(STEAM, 2000, 150), "water": Entity(STEAM, 3000, 95)},
+            {"steam": Entity(STEAM, 4000, 150), "water": Entity(WATER, 1000, 95)},
+            {"steam": Entity(STEAM, 2000, 150), "water": Entity(WATER, 3000, 95)},
         ),
         (
             {"steam": Entity(STEAM, 4000, 110)},

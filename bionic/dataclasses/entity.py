@@ -1,7 +1,7 @@
 """Entity class"""
 from dataclasses import dataclass
 
-from bionic.dataclasses import Element
+from bionic.elements import Element
 from bionic.heat import calculate_heat_amount
 
 

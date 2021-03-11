@@ -2,7 +2,7 @@
 
 import pytest
 
-from bionic.dataclasses import Element
+from bionic.elements import Element
 
 
 @pytest.mark.parametrize(

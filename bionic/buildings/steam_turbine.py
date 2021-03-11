@@ -1,7 +1,8 @@
 """Steam turbine class"""
 from typing import Dict
 
-from bionic.dataclasses import Entity, WATER, STEAM
+from bionic.dataclasses import Entity
+from bionic.elements import STEAM, WATER
 
 
 class SteamTurbine:

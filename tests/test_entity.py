@@ -3,37 +3,40 @@ from typing import List, Tuple
 
 import pytest
 
-from bionic.dataclasses import Element, Entity
+from bionic.dataclasses import Entity
 from bionic.dataclasses.entity import calculate_combined_entity_temperature
+from bionic.elements import Element, WATER, HYDROGEN, IGNEOUS_ROCK
 
 TEST_ELEMENT_NAME = "Test Element"
 
 
-def test_entity_heat():
+@pytest.mark.parametrize(
+    "element, mass, temperature, expected_heat",
+    [
+        (WATER, 1000, 10, 41790),
+        (HYDROGEN, 2000, 20, 96000),
+    ]
+)
+def test_entity_heat(element: Element, mass: float, temperature: float, expected_heat: float):
     """Test entity heat"""
-    shc = 4.179
-    mass = 1000
-    temperature = 10
-    element = Element(TEST_ELEMENT_NAME, shc)
     entity = Entity(element, mass, temperature)
-    assert entity.heat == 41790
+    assert entity.heat == expected_heat
 
 
 @pytest.mark.parametrize(
     "params_list, expected",
     [
-        ([(2.400, 1000, 10)], 10),
-        ([(2.400, 1000, 10), (2.400, 1000, 40)], 25),
-        ([(2.400, 1000, 10), (2.400, 4000, 40)], 34),
-        ([(2.400, 5000, 10), (1.000, 4000, 40)], 17.5),
+        ([(HYDROGEN, 1000, 10)], 10),
+        ([(HYDROGEN, 1000, 10), (HYDROGEN, 1000, 40)], 25),
+        ([(HYDROGEN, 1000, 10), (HYDROGEN, 4000, 40)], 34),
+        ([(HYDROGEN, 5000, 10), (IGNEOUS_ROCK, 4000, 40)], 17.5),
     ]
 )
-def test_calculate_combined_entity_temperature(params_list: List[Tuple[float, float, float]], expected: float):
+def test_calculate_combined_entity_temperature(params_list: List[Tuple[Element, float, float]], expected: float):
     """Test calculate combined entity temperature"""
     entity_list = list()
     for params in params_list:
-        element = Element(TEST_ELEMENT_NAME, params[0])
-        entity = Entity(element, params[1], params[2])
+        entity = Entity(*params)
         entity_list.append(entity)
     combined_temperature = calculate_combined_entity_temperature(*entity_list)
     assert combined_temperature == expected

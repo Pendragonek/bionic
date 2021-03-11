@@ -3,10 +3,9 @@ from typing import List
 
 import pytest
 
-from bionic.buildings.steam_turbine import WATER
-from bionic.dataclasses import Element
 from bionic.dataclasses.entity import Entity
 from bionic.dataclasses.entity_bank import EntityBank
+from bionic.elements import Element, WATER
 
 
 @pytest.mark.parametrize(
