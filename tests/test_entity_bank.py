@@ -3,8 +3,8 @@ from typing import List, Dict
 
 import pytest
 
-from bionic.dataclasses.entity import Entity
-from bionic.dataclasses.entity_bank import EntityBank
+from bionic.entities.entity import Entity
+from bionic.entities.entity_bank import EntityBank
 from bionic.elements import Element, WATER
 
 

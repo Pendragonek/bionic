@@ -3,7 +3,7 @@ from typing import Tuple
 
 import pytest
 
-from bionic.dataclasses.geyser import Geyser
+from bionic.buildings.geyser import Geyser
 
 
 @pytest.mark.parametrize(

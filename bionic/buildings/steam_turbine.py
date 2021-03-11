@@ -1,7 +1,7 @@
 """Steam turbine class"""
 
-from bionic.dataclasses import Entity
-from bionic.dataclasses.entity_bank import EntityBank
+from bionic.entities import Entity
+from bionic.entities.entity_bank import EntityBank
 from bionic.elements import STEAM, WATER
 
 
