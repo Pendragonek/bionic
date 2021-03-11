@@ -1,11 +1,10 @@
 """Test entity bank"""
-from typing import List, Dict
+from typing import Dict, List
 
 import pytest
 
-from bionic.entities.entity import Entity
-from bionic.entities.entity_bank import EntityBank
 from bionic.elements import Element, WATER
+from bionic.entities import Entity, EntityBank
 
 
 @pytest.mark.parametrize(

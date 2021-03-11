@@ -1,8 +1,8 @@
 """Entity bank"""
 from typing import Dict
 
-from bionic.entities.entity import Entity
 from bionic.elements import Element
+from bionic.entities import Entity
 
 
 class EntityBank:
