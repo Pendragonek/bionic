@@ -7,8 +7,8 @@ from bionic.buildings.geyser import Geyser
 from bionic.elements import STEAM
 from bionic.entities import Entity, EntityBank
 
-TEST_OUTPUT_ENTITY = Entity(STEAM, 1000, 110)
-TEST_GEYSER = Geyser(TEST_OUTPUT_ENTITY, 10, 20, 2.4, 4.6)
+TEST_GEYSER_OUTPUT_ENTITY = Entity(STEAM, 1000, 110)
+TEST_GEYSER = Geyser(TEST_GEYSER_OUTPUT_ENTITY, 10, 20, 2.4, 4.6)
 
 
 @pytest.mark.parametrize(
@@ -39,7 +39,7 @@ def test_geyser_is_active(current_time: int, expected: bool):
 @pytest.mark.parametrize(
     "current_time, initial_state, expected_state",
     [
-        (0, [], [TEST_OUTPUT_ENTITY]),
+        (0, [], [TEST_GEYSER_OUTPUT_ENTITY]),
         (10, [], []),
     ]
 )

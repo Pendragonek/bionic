@@ -3,6 +3,7 @@ from typing import Dict
 
 from bionic.elements import Element
 from bionic.entities import Entity
+from bionic.entities.entity import calculate_combined_entity_temperature
 
 
 class EntityBank:
@@ -20,7 +21,9 @@ class EntityBank:
     def add(self, entity: Entity):
         """Add entity to bank"""
         if entity.key in self.entity_dict:
-            self.entity_dict[entity.key].mass += entity.mass
+            stored_entity = self.entity_dict[entity.key]
+            stored_entity.temperature = calculate_combined_entity_temperature(stored_entity, entity)
+            stored_entity.mass += entity.mass
         else:
             self.entity_dict[entity.key] = entity
 

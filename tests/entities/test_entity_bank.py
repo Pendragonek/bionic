@@ -35,7 +35,7 @@ def test_entity_bank_get(initial_state: List[Entity], requested_element: Element
 @pytest.mark.parametrize(
     "initial_state, added_entity, expected_state",
     [
-        ([Entity(WATER, 1000, 50)], Entity(WATER, 2000, 50), [Entity(WATER, 3000, 50)]),
+        ([Entity(WATER, 1000, 50)], Entity(WATER, 2000, 80), [Entity(WATER, 3000, 70)]),
         ([], Entity(WATER, 1000, 50), [Entity(WATER, 1000, 50)]),
     ]
 )

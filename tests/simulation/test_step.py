@@ -7,14 +7,14 @@ from bionic.buildings.steam_turbine import SteamTurbine
 from bionic.elements import STEAM, WATER
 from bionic.entities import Entity, EntityBank
 from bionic.simulation.step import simulation_step
-from tests.buildings.test_geyser import TEST_GEYSER
+from tests.buildings.test_geyser import TEST_GEYSER, TEST_GEYSER_OUTPUT_ENTITY
 
 
 @pytest.mark.parametrize(
     "current_time, initial_state, expected_state",
     [
-        (0, [], [Entity(STEAM, 1000, 110)]),
-        (0, [Entity(STEAM, 2000, 125)], [Entity(WATER, 2000, 95), Entity(STEAM, 1000, 125)]),
+        (0, [], [TEST_GEYSER_OUTPUT_ENTITY]),
+        (0, [Entity(STEAM, 2000, 125)], [Entity(WATER, 2000, 95), TEST_GEYSER_OUTPUT_ENTITY]),
     ]
 )
 def test_simulation_step(current_time: int, initial_state: List[Entity], expected_state: List[Entity]):
