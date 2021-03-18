@@ -6,7 +6,7 @@ from bionic.entities import Entity
 
 
 class EntityBank:
-    """Entity bank"""
+    """Entity bank class"""
 
     def __init__(self, *args: Entity):
         self.entity_dict: Dict[str, Entity] = {}

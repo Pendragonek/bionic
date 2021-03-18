@@ -1,1 +1,1 @@
-"""Init file of BIONIC package"""
+"""BIONIC module"""

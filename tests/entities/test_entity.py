@@ -3,9 +3,9 @@ from typing import List, Tuple
 
 import pytest
 
+from bionic.elements import Element, HYDROGEN, IGNEOUS_ROCK, WATER
 from bionic.entities import Entity
 from bionic.entities.entity import calculate_combined_entity_temperature
-from bionic.elements import Element, WATER, HYDROGEN, IGNEOUS_ROCK
 
 TEST_ELEMENT_NAME = "Test Element"
 
@@ -18,7 +18,7 @@ TEST_ELEMENT_NAME = "Test Element"
     ]
 )
 def test_entity_heat(element: Element, mass: float, temperature: float, expected_heat: float):
-    """Test entity heat"""
+    """Test entity calculations"""
     entity = Entity(element, mass, temperature)
     assert entity.heat == expected_heat
 

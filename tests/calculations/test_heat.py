@@ -1,11 +1,11 @@
-"""Test heat calculations"""
+"""Test calculations calculations"""
 import pytest
 
-from bionic.heat import calculate_heat_amount, calculate_temperature_delta, calculate_combined_temperature
+from bionic.calculations.heat import calculate_combined_temperature, calculate_heat_amount, calculate_temperature_delta
 
 
 def test_calculate_heat_amount():
-    """Test calculation of heat amount"""
+    """Test calculation of calculations amount"""
     shc = 4.179
     mass = 1000
     temperature = 10

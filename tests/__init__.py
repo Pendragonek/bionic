@@ -1,1 +1,1 @@
-"""Init file of BIONIC tests"""
+"""BIONIC tests"""

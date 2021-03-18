@@ -1,10 +1,10 @@
-"""Element dataclass"""
+"""Element class"""
 from dataclasses import dataclass
 
 
 @dataclass
 class Element:
-    """Element dataclass"""
+    """Element class"""
     name: str
     shc: float
 

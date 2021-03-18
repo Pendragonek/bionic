@@ -1,4 +1,4 @@
-"""Steam turbine class"""
+"""Steam Turbine class"""
 
 from bionic.elements import STEAM, WATER
 from bionic.entities import Entity, EntityBank

@@ -1,8 +1,8 @@
 """Entity class"""
 from dataclasses import dataclass
 
+from bionic.calculations.heat import calculate_heat_amount
 from bionic.elements import Element
-from bionic.heat import calculate_heat_amount
 
 
 @dataclass
@@ -29,7 +29,7 @@ class Entity:
 
     @property
     def heat(self) -> float:
-        """Return heat amount"""
+        """Return calculations amount"""
         return calculate_heat_amount(self.element.shc, self.mass, self.temperature)
 
 
