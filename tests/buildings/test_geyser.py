@@ -1,33 +1,50 @@
 """Test entity"""
-from typing import Tuple
+from typing import List
 
 import pytest
 
 from bionic.buildings.geyser import Geyser
+from bionic.elements import STEAM
+from bionic.entities import Entity, EntityBank
+
+TEST_OUTPUT_ENTITY = Entity(STEAM, 1000, 110)
+TEST_GEYSER = Geyser(TEST_OUTPUT_ENTITY, 10, 20, 2.4, 4.6)
 
 
 @pytest.mark.parametrize(
-    "geyser_params, current_time, expected",
+    "current_time, expected",
     [
-        ((4.0, 10, 20, 2.4, 4.6), 0, True),
-        ((4.0, 10, 20, 2.4, 4.6), 10, False),
-        ((4.0, 10, 20, 2.4, 4.6), 1500, False),
+        (0, True),
+        (10, False),
+        (1500, False),
     ]
 )
-def test_geyser_is_erupting(geyser_params: Tuple[float, int, int, float, float], current_time: int, expected: bool):
+def test_geyser_is_erupting(current_time: int, expected: bool):
     """Test geyser is erupting"""
-    geyser = Geyser(*geyser_params)
-    assert geyser.is_erupting(current_time) is expected
+    assert TEST_GEYSER.is_erupting(current_time) is expected
 
 
 @pytest.mark.parametrize(
-    "geyser_params, current_time, expected",
+    "current_time, expected",
     [
-        ((4.0, 10, 20, 2.4, 4.6), 100, True),
-        ((4.0, 10, 20, 2.4, 4.6), 1500, False),
+        (100, True),
+        (1500, False),
     ]
 )
-def test_geyser_is_active(geyser_params: Tuple[float, int, int, float, float], current_time: int, expected: bool):
+def test_geyser_is_active(current_time: int, expected: bool):
     """Test geyser is active"""
-    geyser = Geyser(*geyser_params)
-    assert geyser.is_active(current_time) is expected
+    assert TEST_GEYSER.is_active(current_time) is expected
+
+
+@pytest.mark.parametrize(
+    "current_time, initial_state, expected_state",
+    [
+        (0, [], [TEST_OUTPUT_ENTITY]),
+        (10, [], []),
+    ]
+)
+def test_geyser_process(current_time: int, initial_state: List[Entity], expected_state: List[Entity]):
+    """Test geyser is erupting"""
+    entity_bank = EntityBank(*initial_state)
+    TEST_GEYSER.process(entity_bank, current_time)
+    assert entity_bank.entity_dict == EntityBank(*expected_state).entity_dict
