@@ -2,7 +2,6 @@
 from typing import Dict, Type
 
 from bionic.elements import Element
-from bionic.elements.element import calculate_combined_element_temperature
 
 
 class ElementBank:
@@ -21,7 +20,7 @@ class ElementBank:
         """Add element to bank"""
         if type(element) in self.element_dict:
             stored_element = self.element_dict[type(element)]
-            stored_element.temperature = calculate_combined_element_temperature(stored_element, element)
+            stored_element.temperature = self.calculate_combined_element_temperature(stored_element, element)
             stored_element.mass += element.mass
         else:
             self.element_dict[type(element)] = element
@@ -34,3 +33,13 @@ class ElementBank:
         if stored_element.mass == 0:
             return
         stored_element.mass -= element.mass
+
+    @staticmethod
+    def calculate_combined_element_temperature(*element_list: Element) -> float:
+        """Calculate combined temperature of two entities"""
+        total_heat = 0.0
+        total_heat_capacity = 0.0
+        for element in element_list:
+            total_heat += element.heat
+            total_heat_capacity += element.shc * element.mass
+        return total_heat / total_heat_capacity

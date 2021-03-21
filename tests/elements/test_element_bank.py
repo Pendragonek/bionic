@@ -3,7 +3,7 @@ from typing import Dict, List, Type
 
 import pytest
 
-from bionic.elements import Element, ElementBank, Water
+from bionic.elements import Element, ElementBank, Hydrogen, IgneousRock, Water
 
 
 @pytest.mark.parametrize(
@@ -67,7 +67,22 @@ def test_element_bank_remove(initial_state: List[Element], removed_element: Elem
     ]
 )
 def test_element_bank_remove_exception(initial_state: List[Element], removed_element: Element):
-    """Test element bank remove"""
+    """Test element bank remove exception"""
     element_bank = ElementBank(*initial_state)
     with pytest.raises(ArithmeticError):
         element_bank.remove(removed_element)
+
+
+@pytest.mark.parametrize(
+    "element_list, expected",
+    [
+        ([Hydrogen(1000, 10)], 10),
+        ([Hydrogen(1000, 10), Hydrogen(1000, 40)], 25),
+        ([Hydrogen(1000, 10), Hydrogen(4000, 40)], 34),
+        ([Hydrogen(5000, 10), IgneousRock(4000, 40)], 17.5),
+    ]
+)
+def test_calculate_combined_element_temperature(element_list: List[Element], expected: float):
+    """Test calculate combined element temperature"""
+    combined_temperature = ElementBank.calculate_combined_element_temperature(*element_list)
+    assert combined_temperature == expected
