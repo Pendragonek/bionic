@@ -1,14 +1,13 @@
-"""Test entity"""
+"""Test element"""
 from typing import List
 
 import pytest
 
-from bionic.buildings.geyser import Geyser
-from bionic.elements import STEAM
-from bionic.entities import Entity, EntityBank
+from bionic.buildings import Geyser
+from bionic.elements import Element, ElementBank, Steam
 
-TEST_GEYSER_OUTPUT_ENTITY = Entity(STEAM, 1000, 110)
-TEST_GEYSER = Geyser(TEST_GEYSER_OUTPUT_ENTITY, 10, 20, 2.4, 4.6)
+TEST_GEYSER_OUTPUT_ELEMENT = Steam(1000, 110)
+TEST_GEYSER = Geyser(TEST_GEYSER_OUTPUT_ELEMENT, 10, 20, 2.4, 4.6)
 
 
 @pytest.mark.parametrize(
@@ -39,12 +38,12 @@ def test_geyser_is_active(current_time: int, expected: bool):
 @pytest.mark.parametrize(
     "current_time, initial_state, expected_state",
     [
-        (0, [], [TEST_GEYSER_OUTPUT_ENTITY]),
+        (0, [], [TEST_GEYSER_OUTPUT_ELEMENT]),
         (10, [], []),
     ]
 )
-def test_geyser_process(current_time: int, initial_state: List[Entity], expected_state: List[Entity]):
+def test_geyser_process(current_time: int, initial_state: List[Element], expected_state: List[Element]):
     """Test geyser is erupting"""
-    entity_bank = EntityBank(*initial_state)
-    TEST_GEYSER.process(entity_bank, current_time)
-    assert entity_bank.entity_dict == EntityBank(*expected_state).entity_dict
+    element_bank = ElementBank(*initial_state)
+    TEST_GEYSER.process(element_bank, current_time)
+    assert element_bank.element_dict == ElementBank(*expected_state).element_dict

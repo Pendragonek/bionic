@@ -1,7 +1,7 @@
 """Geyser class"""
 from dataclasses import dataclass
 
-from bionic.entities import Entity, EntityBank
+from bionic.elements import Element, ElementBank
 
 CYCLE_LENGTH = 600
 
@@ -9,7 +9,7 @@ CYCLE_LENGTH = 600
 @dataclass
 class Geyser:
     """Geyser class"""
-    output_entity: Entity
+    output_element: Element
     eruption_time: int
     eruption_period: int
     activity_time: float
@@ -25,7 +25,7 @@ class Geyser:
         """Return if geyser is active based on a given time"""
         return time % int(CYCLE_LENGTH * self.activity_period) < int(CYCLE_LENGTH * self.activity_time)
 
-    def process(self, entity_bank: EntityBank, time: int):
+    def process(self, element_bank: ElementBank, time: int):
         """Process elements"""
         if self.is_erupting(time):
-            entity_bank.add(self.output_entity)
+            element_bank.add(self.output_element)
