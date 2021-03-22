@@ -1,6 +1,7 @@
 """Element"""
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
+from typing import Type
 
 
 @dataclass
@@ -25,3 +26,11 @@ class Element(ABC):
     def heat(self) -> float:
         """Return heat amount"""
         return self.shc * self.mass * self.temperature
+
+    def __add__(self, other: 'Element') -> 'Element':
+        element_type: Type[Element] = type(self)
+        if not isinstance(other, element_type):
+            raise TypeError
+        mass = self.mass + other.mass
+        temperature = (self.mass * self.temperature + other.mass * other.temperature) / mass
+        return element_type(mass, temperature)
