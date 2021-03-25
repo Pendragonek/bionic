@@ -8,7 +8,7 @@ class SteamTurbine:
     name: str = "Steam Turbine"
     heat: float = 4
 
-    def process(self, element_bank: ElementBank):
+    def process(self, element_bank: ElementBank) -> None:
         """Process elements"""
         max_mass = 2000
         steam_element = element_bank.get(Steam)

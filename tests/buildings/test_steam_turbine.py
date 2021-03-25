@@ -22,9 +22,12 @@ from bionic.elements import Element, ElementBank, Steam, Water
             [Steam(1000, 150)],
             [Steam(0, 150), Water(1000, 95)],
         ),
-    ]
+    ],
 )
-def test_steam_turbine_process(initial_state: List[Element], expected_state: List[Element]):
+def test_steam_turbine_process(
+    initial_state: List[Element], expected_state: List[Element]
+):
+    """Test Steam Turbine process"""
     steam_turbine = SteamTurbine()
     element_bank = ElementBank(*initial_state)
     steam_turbine.process(element_bank)

@@ -1,7 +1,7 @@
 """Element bank"""
 from typing import Dict, Type
 
-from bionic.elements import Element
+from bionic.elements.element import Element
 
 
 class ElementBank:
@@ -16,16 +16,18 @@ class ElementBank:
         """Get element based on element type"""
         return self.element_dict.get(element_type) or element_type()
 
-    def add(self, element: Element):
+    def add(self, element: Element) -> None:
         """Add element to bank"""
         if type(element) in self.element_dict:
             stored_element = self.element_dict[type(element)]
-            stored_element.temperature = self.calculate_combined_element_temperature(stored_element, element)
+            stored_element.temperature = self.calculate_combined_element_temperature(
+                stored_element, element
+            )
             stored_element.mass += element.mass
         else:
             self.element_dict[type(element)] = element
 
-    def remove(self, element: Element):
+    def remove(self, element: Element) -> None:
         """Remove element from bank"""
         stored_element = self.get(type(element))
         if stored_element.mass < element.mass:

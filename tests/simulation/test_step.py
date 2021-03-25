@@ -14,9 +14,12 @@ from tests.buildings.test_geyser import TEST_GEYSER, TEST_GEYSER_OUTPUT_ELEMENT
     [
         (0, [], [TEST_GEYSER_OUTPUT_ELEMENT]),
         (0, [Steam(2000, 125)], [Water(2000, 95), TEST_GEYSER_OUTPUT_ELEMENT]),
-    ]
+    ],
 )
-def test_simulation_step(current_time: int, initial_state: List[Element], expected_state: List[Element]):
+def test_simulation_step(
+    current_time: int, initial_state: List[Element], expected_state: List[Element]
+):
+    """Test simulation step"""
     steam_turbine = SteamTurbine()
     element_bank = ElementBank(*initial_state)
     simulation_step(steam_turbine, TEST_GEYSER, element_bank, current_time)

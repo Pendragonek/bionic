@@ -1,5 +1,5 @@
 """Water element"""
-from bionic.elements import Element
+from bionic.elements.element import Element
 
 
 class Water(Element):
