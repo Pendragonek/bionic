@@ -42,6 +42,7 @@ def test_element_bank_get(
     [
         ([Water(1000, 50)], Water(2000, 80), [Water(3000, 70)]),
         ([], Water(1000, 50), [Water(1000, 50)]),
+        ([], Water(0, 0), [Water(0, 0)]),
     ],
 )
 def test_element_bank_add(

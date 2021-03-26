@@ -18,14 +18,11 @@ class ElementBank:
 
     def add(self, element: Element) -> None:
         """Add element to bank"""
-        if type(element) in self.element_dict:
-            stored_element = self.element_dict[type(element)]
-            stored_element.temperature = self.calculate_combined_element_temperature(
-                stored_element, element
-            )
-            stored_element.mass += element.mass
+        element_type = type(element)
+        if element_type in self.element_dict:
+            self.element_dict[element_type] += element
         else:
-            self.element_dict[type(element)] = element
+            self.element_dict[element_type] = element
 
     def remove(self, element: Element) -> None:
         """Remove element from bank"""
