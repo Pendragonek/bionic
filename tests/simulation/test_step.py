@@ -1,4 +1,5 @@
 """Test simulation step"""
+
 from typing import List
 
 import pytest

@@ -1,4 +1,5 @@
 """Geyser class"""
+
 from dataclasses import dataclass
 
 from bionic.elements import Element, ElementBank
@@ -28,7 +29,7 @@ class Geyser:
             CYCLE_LENGTH * self.activity_time
         )
 
-    def process(self, element_bank: ElementBank, time: int) -> None:
+    def process(self, element_bank: ElementBank, time: int):
         """Process elements"""
         if self.is_erupting(time):
             element_bank.add(self.output_element)

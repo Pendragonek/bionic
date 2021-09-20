@@ -1,4 +1,5 @@
 """Element bank"""
+
 from typing import Dict, Type
 
 from bionic.elements.element import Element
@@ -16,7 +17,7 @@ class ElementBank:
         """Get element based on element type"""
         return self.element_dict.get(element_type) or element_type()
 
-    def add(self, element: Element) -> None:
+    def add(self, element: Element):
         """Add element to bank"""
         element_type = type(element)
         if element_type in self.element_dict:
@@ -24,7 +25,7 @@ class ElementBank:
         else:
             self.element_dict[element_type] = element
 
-    def remove(self, element: Element) -> None:
+    def remove(self, element: Element):
         """Remove element from bank"""
         stored_element = self.get(type(element))
         if stored_element.mass < element.mass:

@@ -1,4 +1,5 @@
 """Steam Turbine class"""
+
 from bionic.elements import ElementBank, Steam, Water
 
 
@@ -8,7 +9,7 @@ class SteamTurbine:
     name: str = "Steam Turbine"
     heat: float = 4
 
-    def process(self, element_bank: ElementBank) -> None:
+    def process(self, element_bank: ElementBank):
         """Process elements"""
         max_mass = 2000
         steam_element = element_bank.get(Steam)

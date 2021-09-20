@@ -1,6 +1,8 @@
 """Element"""
 from abc import ABC, abstractmethod
+from copy import copy
 from dataclasses import dataclass
+from typing import Union
 
 
 @dataclass  # type: ignore
@@ -34,3 +36,13 @@ class Element(ABC):
                           self.mass * self.temperature + other.mass * other.temperature
                       ) / mass
         return element_type(mass, temperature)
+
+    def __mul__(self, other: Union[float, int]) -> "Element":
+        element_copy = copy(self)
+        element_copy.mass *= other
+        return element_copy
+
+    def __truediv__(self, other: Union[float, int]) -> "Element":
+        element_copy = copy(self)
+        element_copy.mass /= other
+        return element_copy

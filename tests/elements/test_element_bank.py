@@ -1,4 +1,5 @@
 """Test element bank"""
+
 from typing import Dict, List, Type
 
 import pytest

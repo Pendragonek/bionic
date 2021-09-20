@@ -1,4 +1,5 @@
 """Igneous Rock element"""
+
 from bionic.elements.element import Element
 
 

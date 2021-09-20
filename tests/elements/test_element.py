@@ -1,4 +1,5 @@
 """Test element"""
+from typing import Union
 
 import pytest
 
@@ -42,3 +43,31 @@ def test_element_add_exception(base_element: Element, added_element: Element):
     """Test element add exception"""
     with pytest.raises(TypeError):
         assert base_element + added_element
+
+
+@pytest.mark.parametrize(
+    "base_element, added_element, expected_element",
+    [
+        (Water(1000), 2, Water(2000)),
+        (Water(1000), 0.5, Water(500)),
+    ],
+)
+def test_element_multiply(
+    base_element: Element, added_element: Union[int, float], expected_element: Element
+):
+    """Test element multiply"""
+    assert base_element * added_element == expected_element
+
+
+@pytest.mark.parametrize(
+    "base_element, added_element, expected_element",
+    [
+        (Water(1000), 2, Water(500)),
+        (Water(1000), 0.5, Water(2000)),
+    ],
+)
+def test_element_divide(
+    base_element: Element, added_element: Union[int, float], expected_element: Element
+):
+    """Test element divide"""
+    assert base_element / added_element == expected_element
