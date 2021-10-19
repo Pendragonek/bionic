@@ -1,4 +1,5 @@
 """Elements module"""
+
 from bionic.elements.element import Element
 from bionic.elements.element_bank import ElementBank
 from bionic.elements.hydrogen import Hydrogen

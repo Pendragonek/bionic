@@ -1,8 +1,8 @@
 """Test nosh sprout"""
 from bionic.elements.dirt import Dirt
 from bionic.elements.ethanol import Ethanol
+from bionic.food.nosh_bean import NoshBean
 from bionic.plants.nosh_sprout import NoshSprout
-from bionic.resources.nosh_bean import NoshBean
 
 
 def test_wild_plant():
