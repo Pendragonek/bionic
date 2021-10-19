@@ -28,11 +28,11 @@ class ElementBank:
     def remove(self, element: Element):
         """Remove element from bank"""
         stored_element = self.get(type(element))
-        if stored_element.mass < element.mass:
+        if stored_element.amount < element.amount:
             raise ArithmeticError
-        if stored_element.mass == 0:
+        if stored_element.amount == 0:
             return
-        stored_element.mass -= element.mass
+        stored_element.amount -= element.amount
 
     @staticmethod
     def calculate_combined_element_temperature(*element_list: Element) -> float:
@@ -41,5 +41,5 @@ class ElementBank:
         total_heat_capacity = 0.0
         for element in element_list:
             total_heat += element.heat
-            total_heat_capacity += element.shc * element.mass
+            total_heat_capacity += element.shc * element.amount
         return total_heat / total_heat_capacity

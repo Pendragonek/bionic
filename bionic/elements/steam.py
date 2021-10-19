@@ -7,11 +7,6 @@ class Steam(Element):
     """Steam element class"""
 
     @property
-    def name(self) -> str:
-        """Return name of Steam element"""
-        return "Steam"
-
-    @property
     def shc(self) -> float:
-        """Return SHC of Steam element"""
+        """Return SHC of the element"""
         return 4.179

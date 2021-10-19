@@ -7,11 +7,6 @@ class Water(Element):
     """Water element class"""
 
     @property
-    def name(self) -> str:
-        """Return name of Water element"""
-        return "Water"
-
-    @property
     def shc(self) -> float:
-        """Return SHC of Water element"""
+        """Return SHC of the element"""
         return 4.179
