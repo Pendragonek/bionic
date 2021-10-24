@@ -1,4 +1,5 @@
 """Tofu"""
+
 from bionic.food.food import Food
 
 

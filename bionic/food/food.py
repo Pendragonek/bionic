@@ -1,4 +1,5 @@
 """Food"""
+
 from abc import abstractmethod
 
 from bionic.resources.resource import Resource

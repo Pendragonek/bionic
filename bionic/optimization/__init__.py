@@ -1,1 +1,1 @@
-"""Optimization module"""
+"""Optimization"""

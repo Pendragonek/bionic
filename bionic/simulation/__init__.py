@@ -1,1 +1,1 @@
-"""Simulation module"""
+"""Simulation"""

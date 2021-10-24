@@ -1,4 +1,5 @@
-"""Test nosh sprout"""
+"""Test plant"""
+
 from bionic.elements.dirt import Dirt
 from bionic.elements.ethanol import Ethanol
 from bionic.food.nosh_bean import NoshBean

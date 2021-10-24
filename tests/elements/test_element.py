@@ -3,7 +3,9 @@ from typing import Union
 
 import pytest
 
-from bionic.elements import Element, Hydrogen, Water
+from bionic.elements.element import Element
+from bionic.elements.hydrogen import Hydrogen
+from bionic.elements.water import Water
 
 
 @pytest.mark.parametrize(

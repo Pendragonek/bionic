@@ -1,1 +1,1 @@
-"""BIONIC module"""
+"""BIONIC"""

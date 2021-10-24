@@ -1,6 +1,6 @@
 """Tofu recipe"""
 
-from bionic.elements import Water
+from bionic.elements.water import Water
 from bionic.food.nosh_bean import NoshBean
 from bionic.food.tofu import Tofu
 

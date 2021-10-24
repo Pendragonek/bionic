@@ -1,11 +1,14 @@
-"""Test Steam Turbine"""
+"""Test steam turbine"""
 
 from typing import List
 
 import pytest
 
-from bionic.buildings import SteamTurbine
-from bionic.elements import Element, ElementBank, Steam, Water
+from bionic.buildings.steam_turbine import SteamTurbine
+from bionic.elements.element import Element
+from bionic.elements.element_bank import ElementBank
+from bionic.elements.steam import Steam
+from bionic.elements.water import Water
 
 
 @pytest.mark.parametrize(

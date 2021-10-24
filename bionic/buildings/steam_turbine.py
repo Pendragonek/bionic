@@ -1,6 +1,8 @@
-"""Steam Turbine class"""
+"""Steam turbine class"""
 
-from bionic.elements import ElementBank, Steam, Water
+from bionic.elements.element_bank import ElementBank
+from bionic.elements.steam import Steam
+from bionic.elements.water import Water
 
 
 class SteamTurbine:

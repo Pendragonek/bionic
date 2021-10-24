@@ -1,8 +1,9 @@
 """Test production"""
+
 import pytest
 
-from bionic.buildings import Geyser
-from bionic.elements import Hydrogen
+from bionic.buildings.geyser import Geyser
+from bionic.elements.hydrogen import Hydrogen
 from bionic.optimization.production import calculate_geyser_average_production
 
 

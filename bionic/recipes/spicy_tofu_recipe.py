@@ -5,7 +5,7 @@ from bionic.food.spicy_tofu import SpicyTofu
 from bionic.food.tofu import Tofu
 
 
-class TofuRecipe:
+class SpicyTofuRecipe:
     """Spicy tofu recipe class"""
 
     ingredient_list = [Tofu(1), PinchaPeppernut(1)]

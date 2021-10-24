@@ -1,10 +1,10 @@
-"""Steam element"""
+"""Steam"""
 
 from bionic.elements.element import Element
 
 
 class Steam(Element):
-    """Steam element class"""
+    """Steam class"""
 
     @property
     def shc(self) -> float:

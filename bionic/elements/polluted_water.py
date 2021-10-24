@@ -1,10 +1,10 @@
-"""Polluted water element"""
+"""Polluted water"""
 
 from bionic.elements.element import Element
 
 
 class PollutedWater(Element):
-    """Polluted water element class"""
+    """Polluted water class"""
 
     @property
     def shc(self) -> float:

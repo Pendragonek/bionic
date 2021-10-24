@@ -1,10 +1,10 @@
-"""Phosphorite element"""
+"""Phosphorite"""
 
 from bionic.elements.element import Element
 
 
 class Phosphorite(Element):
-    """Phosphorite element class"""
+    """Phosphorite class"""
 
     @property
     def shc(self) -> float:

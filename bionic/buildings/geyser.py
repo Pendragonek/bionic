@@ -2,7 +2,8 @@
 
 from dataclasses import dataclass
 
-from bionic.elements import Element, ElementBank
+from bionic.elements.element import Element
+from bionic.elements.element_bank import ElementBank
 
 CYCLE_LENGTH = 600
 

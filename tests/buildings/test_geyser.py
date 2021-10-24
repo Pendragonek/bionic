@@ -4,8 +4,10 @@ from typing import List
 
 import pytest
 
-from bionic.buildings import Geyser
-from bionic.elements import Element, ElementBank, Steam
+from bionic.buildings.geyser import Geyser
+from bionic.elements.element import Element
+from bionic.elements.element_bank import ElementBank
+from bionic.elements.steam import Steam
 
 TEST_GEYSER_OUTPUT_ELEMENT = Steam(1000, 110)
 TEST_GEYSER = Geyser(TEST_GEYSER_OUTPUT_ELEMENT, 10, 20, 2.4, 4.6)

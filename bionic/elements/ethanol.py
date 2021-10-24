@@ -1,5 +1,6 @@
 """Ethanol"""
-from bionic.elements import Element
+
+from bionic.elements.element import Element
 
 
 class Ethanol(Element):

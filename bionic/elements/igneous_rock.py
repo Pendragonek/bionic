@@ -1,10 +1,10 @@
-"""Igneous Rock element"""
+"""Igneous rock"""
 
 from bionic.elements.element import Element
 
 
 class IgneousRock(Element):
-    """Igneous Rock element class"""
+    """Igneous rock class"""
 
     @property
     def shc(self) -> float:

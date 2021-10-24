@@ -1,7 +1,8 @@
 """Simulation step"""
 
-from bionic.buildings import Geyser, SteamTurbine
-from bionic.elements import ElementBank
+from bionic.buildings.geyser import Geyser
+from bionic.buildings.steam_turbine import SteamTurbine
+from bionic.elements.element_bank import ElementBank
 
 
 def simulation_step(

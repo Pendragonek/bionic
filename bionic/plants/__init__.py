@@ -1,1 +1,1 @@
-"""Plants module"""
+"""Plants"""

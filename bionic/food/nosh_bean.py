@@ -1,4 +1,5 @@
 """Nosh Bean"""
+
 from bionic.food.food import Food
 
 

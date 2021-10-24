@@ -4,7 +4,11 @@ from typing import Dict, List, Type
 
 import pytest
 
-from bionic.elements import Element, ElementBank, Hydrogen, IgneousRock, Water
+from bionic.elements.element import Element
+from bionic.elements.element_bank import ElementBank
+from bionic.elements.hydrogen import Hydrogen
+from bionic.elements.igneous_rock import IgneousRock
+from bionic.elements.water import Water
 
 
 @pytest.mark.parametrize(
