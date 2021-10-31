@@ -12,12 +12,22 @@ class Resource(ABC):
 
     amount: float = 0
 
+    def __add__(self, other: "Resource") -> "Resource":
+        resource_copy = copy(self)
+        resource_copy.amount += other.amount
+        return resource_copy
+
+    def __sub__(self, other: "Resource") -> "Resource":
+        resource_copy = copy(self)
+        resource_copy.amount -= other.amount
+        return resource_copy
+
     def __mul__(self, other: Union[float, int]) -> "Resource":
-        element_copy = copy(self)
-        element_copy.amount *= other
-        return element_copy
+        resource_copy = copy(self)
+        resource_copy.amount *= other
+        return resource_copy
 
     def __truediv__(self, other: Union[float, int]) -> "Resource":
-        element_copy = copy(self)
-        element_copy.amount /= other
-        return element_copy
+        resource_copy = copy(self)
+        resource_copy.amount /= other
+        return resource_copy

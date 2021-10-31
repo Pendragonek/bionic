@@ -6,7 +6,7 @@ import pytest
 
 from bionic.buildings.steam_turbine import SteamTurbine
 from bionic.elements.element import Element
-from bionic.elements.element_bank import ElementBank
+from bionic.resources.resource_bank import ResourceBank
 from bionic.elements.steam import Steam
 from bionic.elements.water import Water
 from bionic.simulation.step import simulation_step
@@ -25,6 +25,6 @@ def test_simulation_step(
 ):
     """Test simulation step"""
     steam_turbine = SteamTurbine()
-    element_bank = ElementBank(*initial_state)
+    element_bank = ResourceBank(*initial_state)
     simulation_step(steam_turbine, TEST_GEYSER, element_bank, current_time)
-    assert element_bank.element_dict == ElementBank(*expected_state).element_dict
+    assert element_bank.resource_dict == ResourceBank(*expected_state).resource_dict

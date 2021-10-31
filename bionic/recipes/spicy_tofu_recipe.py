@@ -1,12 +1,23 @@
 """Spicy tofu recipe"""
 
+from typing import List
+
 from bionic.food.pincha_peppernut import PinchaPeppernut
 from bionic.food.spicy_tofu import SpicyTofu
 from bionic.food.tofu import Tofu
+from bionic.recipes.recipe import Recipe
+from bionic.resources.resource import Resource
 
 
-class SpicyTofuRecipe:
+class SpicyTofuRecipe(Recipe):
     """Spicy tofu recipe class"""
 
-    ingredient_list = [Tofu(1), PinchaPeppernut(1)]
-    product = SpicyTofu(1)
+    @property
+    def ingredient_list(self) -> List[Resource]:
+        """Ingredient list property"""
+        return [Tofu(1), PinchaPeppernut(1)]
+
+    @property
+    def product(self) -> Resource:
+        """Product property"""
+        return SpicyTofu(1)

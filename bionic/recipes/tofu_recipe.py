@@ -1,12 +1,23 @@
 """Tofu recipe"""
 
+from typing import List
+
 from bionic.elements.water import Water
 from bionic.food.nosh_bean import NoshBean
 from bionic.food.tofu import Tofu
+from bionic.recipes.recipe import Recipe
+from bionic.resources.resource import Resource
 
 
-class TofuRecipe:
+class TofuRecipe(Recipe):
     """Tofu recipe class"""
 
-    ingredient_list = [NoshBean(6), Water(50000)]
-    product = Tofu(1)
+    @property
+    def ingredient_list(self) -> List[Resource]:
+        """Ingredient list property"""
+        return [NoshBean(6), Water(50000)]
+
+    @property
+    def product(self) -> Resource:
+        """Product property"""
+        return Tofu(1)

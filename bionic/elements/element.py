@@ -31,3 +31,13 @@ class Element(Resource):
             self.amount * self.temperature + other.amount * other.temperature
         ) / mass
         return element_type(mass, temperature)
+
+
+def calculate_combined_element_temperature(*element_list: Element) -> float:
+    """Calculate combined temperature of two entities"""
+    total_heat = 0.0
+    total_heat_capacity = 0.0
+    for element in element_list:
+        total_heat += element.heat
+        total_heat_capacity += element.shc * element.amount
+    return total_heat / total_heat_capacity

@@ -2,11 +2,11 @@
 
 from bionic.buildings.geyser import Geyser
 from bionic.buildings.steam_turbine import SteamTurbine
-from bionic.elements.element_bank import ElementBank
+from bionic.resources.resource_bank import ResourceBank
 
 
 def simulation_step(
-    steam_turbine: SteamTurbine, geyser: Geyser, element_bank: ElementBank, time: int
+    steam_turbine: SteamTurbine, geyser: Geyser, element_bank: ResourceBank, time: int
 ):
     """Make step of the simulation"""
     steam_turbine.process(element_bank)

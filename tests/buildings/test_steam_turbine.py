@@ -6,7 +6,7 @@ import pytest
 
 from bionic.buildings.steam_turbine import SteamTurbine
 from bionic.elements.element import Element
-from bionic.elements.element_bank import ElementBank
+from bionic.resources.resource_bank import ResourceBank
 from bionic.elements.steam import Steam
 from bionic.elements.water import Water
 
@@ -24,7 +24,7 @@ from bionic.elements.water import Water
         ),
         (
             [Steam(1000, 150)],
-            [Steam(0, 150), Water(1000, 95)],
+            [Water(1000, 95)],
         ),
     ],
 )
@@ -33,6 +33,6 @@ def test_steam_turbine_process(
 ):
     """Test Steam Turbine process"""
     steam_turbine = SteamTurbine()
-    element_bank = ElementBank(*initial_state)
+    element_bank = ResourceBank(*initial_state)
     steam_turbine.process(element_bank)
-    assert element_bank.element_dict == ElementBank(*expected_state).element_dict
+    assert element_bank.resource_dict == ResourceBank(*expected_state).resource_dict
