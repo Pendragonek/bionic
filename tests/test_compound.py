@@ -26,20 +26,67 @@ from bionic.resources.resource_bank import ResourceBank
             [Tofu(1)],
         ),
         (
+            [TofuRecipe(4)],
+            [NoshBean(24), Water(200000)],
+            [Tofu(4)],
+        ),
+        (
             [TofuRecipe(1), SpicyTofuRecipe(1)],
             [NoshBean(6), Water(50000), PinchaPeppernut(1)],
             [SpicyTofu(1)],
         ),
     ],
 )
-def test_compound_balance(
+def test_compound(
     part_list: List[Processor],
     expected_consumption: List[Resource],
     expected_production: List[Resource],
 ):
-    """Test compound balance"""
+    """Test compound"""
     compound = Compound(part_list)
     expected_consumption_bank = ResourceBank(*expected_consumption)
     expected_production_bank = ResourceBank(*expected_production)
     assert compound.consumption.resource_dict == expected_consumption_bank.resource_dict
     assert compound.production.resource_dict == expected_production_bank.resource_dict
+
+
+@pytest.mark.parametrize(
+    "part_list, producer, expected_processor_list",
+    [
+        (
+            [SpicyTofuRecipe(1)],
+            TofuRecipe(),
+            [SpicyTofuRecipe(1), TofuRecipe(1)],
+        ),
+    ],
+)
+def test_compound_producer(
+    part_list: List[Processor],
+    producer: Processor,
+    expected_processor_list: List[Processor],
+):
+    """Test compound producer"""
+    compound = Compound(part_list)
+    compound.add_producer(producer)
+    assert compound.processor_list == expected_processor_list
+
+
+@pytest.mark.parametrize(
+    "part_list, consumer, expected_processor_list",
+    [
+        (
+            [TofuRecipe(1)],
+            SpicyTofuRecipe(),
+            [TofuRecipe(1), SpicyTofuRecipe(1)],
+        ),
+    ],
+)
+def test_compound_consumer(
+    part_list: List[Processor],
+    consumer: Processor,
+    expected_processor_list: List[Processor],
+):
+    """Test compound producer"""
+    compound = Compound(part_list)
+    compound.add_consumer(consumer)
+    assert compound.processor_list == expected_processor_list

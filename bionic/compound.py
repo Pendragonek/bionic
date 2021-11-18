@@ -38,3 +38,23 @@ class Compound:
                 self.production.add(resource_type(amount_diff))
             else:
                 self.consumption.remove(produced_resource)
+
+    def add_producer(self, processor: Processor):
+        """Add producer"""
+        processor.amount = 1
+        for product in processor.production:
+            demand = self.consumption.get(type(product))
+            if demand.amount == 0:
+                continue
+            processor.amount = demand.amount // product.amount
+            self.add_processor(processor)
+
+    def add_consumer(self, processor: Processor):
+        """Add consumer"""
+        processor.amount = 1
+        for product in processor.consumption:
+            supply = self.production.get(type(product))
+            if supply.amount == 0:
+                continue
+            processor.amount = supply.amount // product.amount
+            self.add_processor(processor)
