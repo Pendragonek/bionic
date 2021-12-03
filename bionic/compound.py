@@ -21,21 +21,21 @@ class Compound:
         """Add processor"""
         self.processor_list.append(processor)
         for consumed_resource in processor.consumption:
-            resource_type: Type[Resource] = type(consumed_resource)
-            produced_resource = self.production.get(resource_type)
+            consumed_resource_type = type(consumed_resource)
+            produced_resource = self.production.get(consumed_resource_type)
             amount_diff = consumed_resource.amount - produced_resource.amount
             if amount_diff > 0:
                 self.production.remove(produced_resource)
-                self.consumption.add(resource_type(amount_diff))
+                self.consumption.add(consumed_resource_type(amount_diff))
             else:
                 self.production.remove(consumed_resource)
         for produced_resource in processor.production:
-            resource_type: Type[Resource] = type(produced_resource)
-            consumed_resource = self.consumption.get(resource_type)
+            produced_resource_type: Type[Resource] = type(produced_resource)
+            consumed_resource = self.consumption.get(produced_resource_type)
             amount_diff = produced_resource.amount - consumed_resource.amount
             if amount_diff > 0:
                 self.consumption.remove(consumed_resource)
-                self.production.add(resource_type(amount_diff))
+                self.production.add(produced_resource_type(amount_diff))
             else:
                 self.consumption.remove(produced_resource)
 
