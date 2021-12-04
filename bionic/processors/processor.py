@@ -11,7 +11,7 @@ from bionic.resources.resource import Resource
 class Processor(ABC):
     """Processor class"""
 
-    amount: int = 0
+    amount: float = 0
 
     @property
     @abstractmethod

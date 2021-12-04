@@ -2,7 +2,9 @@
 
 from typing import List, Type
 
+from bionic.processors.duplicant import Duplicant
 from bionic.processors.processor import Processor
+from bionic.recipes.recipe import Recipe
 from bionic.resources.resource import Resource
 from bionic.resources.resource_bank import ResourceBank
 
@@ -13,6 +15,7 @@ class Compound:
     def __init__(self, processor_list: List[Processor]):
         self.consumption = ResourceBank()
         self.production = ResourceBank()
+        self.calories = 0
         self.processor_list: List[Processor] = list()
         for processor in processor_list:
             self.add_processor(processor)
@@ -38,6 +41,8 @@ class Compound:
                 self.production.add(produced_resource_type(amount_diff))
             else:
                 self.consumption.remove(produced_resource)
+        if isinstance(processor, Duplicant) or isinstance(processor, Recipe):
+            self.calories += processor.calories
 
     def add_producer(self, processor: Processor):
         """Add producer"""
@@ -46,7 +51,7 @@ class Compound:
             demand = self.consumption.get(type(product))
             if demand.amount == 0:
                 continue
-            processor.amount = demand.amount // product.amount
+            processor.amount = demand.amount / product.amount
             self.add_processor(processor)
 
     def add_consumer(self, processor: Processor):
@@ -56,5 +61,5 @@ class Compound:
             supply = self.production.get(type(product))
             if supply.amount == 0:
                 continue
-            processor.amount = supply.amount // product.amount
+            processor.amount = supply.amount / product.amount
             self.add_processor(processor)

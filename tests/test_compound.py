@@ -18,22 +18,31 @@ from bionic.resources.resource_bank import ResourceBank
 
 
 @pytest.mark.parametrize(
-    "part_list, expected_consumption, expected_production",
+    "part_list, expected_consumption, expected_production, expected_calories",
     [
         (
             [TofuRecipe(1)],
             [NoshBean(6), Water(50000)],
             [Tofu(1)],
+            3600,
         ),
         (
             [TofuRecipe(4)],
             [NoshBean(24), Water(200000)],
             [Tofu(4)],
+            14400,
+        ),
+        (
+            [TofuRecipe(2.5)],
+            [NoshBean(15), Water(125000)],
+            [Tofu(2.5)],
+            9000,
         ),
         (
             [TofuRecipe(1), SpicyTofuRecipe(1)],
             [NoshBean(6), Water(50000), PinchaPeppernut(1)],
             [SpicyTofu(1)],
+            4000,
         ),
     ],
 )
@@ -41,6 +50,7 @@ def test_compound(
     part_list: List[Processor],
     expected_consumption: List[Resource],
     expected_production: List[Resource],
+    expected_calories: float,
 ):
     """Test compound"""
     compound = Compound(part_list)
@@ -48,6 +58,7 @@ def test_compound(
     expected_production_bank = ResourceBank(*expected_production)
     assert compound.consumption.resource_dict == expected_consumption_bank.resource_dict
     assert compound.production.resource_dict == expected_production_bank.resource_dict
+    assert compound.calories == expected_calories
 
 
 @pytest.mark.parametrize(
@@ -57,6 +68,11 @@ def test_compound(
             [SpicyTofuRecipe(1)],
             TofuRecipe(),
             [SpicyTofuRecipe(1), TofuRecipe(1)],
+        ),
+        (
+            [SpicyTofuRecipe(1.1)],
+            TofuRecipe(),
+            [SpicyTofuRecipe(1.1), TofuRecipe(1.1)],
         ),
     ],
 )
@@ -78,6 +94,11 @@ def test_compound_producer(
             [TofuRecipe(1)],
             SpicyTofuRecipe(),
             [TofuRecipe(1), SpicyTofuRecipe(1)],
+        ),
+        (
+            [TofuRecipe(1.1)],
+            SpicyTofuRecipe(),
+            [TofuRecipe(1.1), SpicyTofuRecipe(1.1)],
         ),
     ],
 )

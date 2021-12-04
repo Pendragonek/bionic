@@ -3,6 +3,7 @@
 from abc import abstractmethod
 from typing import List
 
+from bionic.food.food import Food
 from bionic.processors.processor import Processor
 from bionic.resources.resource import Resource
 
@@ -17,7 +18,7 @@ class Recipe(Processor):
 
     @property
     @abstractmethod
-    def product(self) -> Resource:
+    def product(self) -> Food:
         """Product property"""
 
     @property
@@ -32,3 +33,13 @@ class Recipe(Processor):
     def production(self) -> List[Resource]:
         """Production property"""
         return [self.product * self.amount]
+
+    @property
+    def calories(self) -> float:
+        """Calories property"""
+        calories = 0
+        for ingredient in self.ingredient_list:
+            if isinstance(ingredient, Food):
+                calories -= ingredient.calories
+        calories += self.product.calories
+        return calories * self.amount

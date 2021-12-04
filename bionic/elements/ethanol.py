@@ -8,5 +8,5 @@ class Ethanol(Element):
 
     @property
     def shc(self) -> float:
-        """Return SHC of Ethanol element"""
+        """Return SHC of the element"""
         return 2.460
