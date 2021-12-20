@@ -32,4 +32,3 @@ class Processor(ABC):
     def production(self) -> List[Resource]:
         """Production property"""
         return [resource * self.amount for resource in self.production_per_unit]
-

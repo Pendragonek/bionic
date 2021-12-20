@@ -15,8 +15,8 @@ class Compound:
     def __init__(self, processor_list: List[Processor]):
         self.consumption = ResourceBank()
         self.production = ResourceBank()
-        self.calories = 0
-        self.processor_list: List[Processor] = list()
+        self.calories: float = 0.0
+        self.processor_list: List[Processor] = []
         for processor in processor_list:
             self.add_processor(processor)
 
@@ -41,7 +41,7 @@ class Compound:
                 self.production.add(produced_resource_type(amount_diff))
             else:
                 self.consumption.remove(produced_resource)
-        if isinstance(processor, Duplicant) or isinstance(processor, Recipe):
+        if isinstance(processor, (Duplicant, Recipe)):
             self.calories += processor.calories
 
     def add_producer(self, processor: Processor):

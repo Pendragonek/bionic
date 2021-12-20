@@ -3,6 +3,7 @@
 from typing import List
 
 from bionic.elements.water import Water
+from bionic.food.food import Food
 from bionic.food.nosh_bean import NoshBean
 from bionic.food.tofu import Tofu
 from bionic.recipes.recipe import Recipe
@@ -18,6 +19,6 @@ class TofuRecipe(Recipe):
         return [NoshBean(6), Water(50000)]
 
     @property
-    def product(self) -> Resource:
+    def product(self) -> Food:
         """Product property"""
         return Tofu(1)

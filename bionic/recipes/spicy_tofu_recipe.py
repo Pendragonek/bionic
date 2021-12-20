@@ -2,6 +2,7 @@
 
 from typing import List
 
+from bionic.food.food import Food
 from bionic.food.pincha_peppernut import PinchaPeppernut
 from bionic.food.spicy_tofu import SpicyTofu
 from bionic.food.tofu import Tofu
@@ -18,6 +19,6 @@ class SpicyTofuRecipe(Recipe):
         return [Tofu(1), PinchaPeppernut(1)]
 
     @property
-    def product(self) -> Resource:
+    def product(self) -> Food:
         """Product property"""
         return SpicyTofu(1)

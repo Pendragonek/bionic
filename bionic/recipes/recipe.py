@@ -24,7 +24,7 @@ class Recipe(Processor):
     @property
     def consumption_per_unit(self) -> List[Resource]:
         """Consumption property"""
-        ingredient_list = list()
+        ingredient_list = []
         for ingredient in self.ingredient_list:
             ingredient_list.append(ingredient)
         return ingredient_list
@@ -37,7 +37,7 @@ class Recipe(Processor):
     @property
     def calories(self) -> float:
         """Calories property"""
-        calories = 0
+        calories = 0.0
         for ingredient in self.ingredient_list:
             if isinstance(ingredient, Food):
                 calories -= ingredient.calories

@@ -24,5 +24,4 @@ class Duplicant(Processor):
     @property
     def calories(self) -> float:
         """Calorie intake property"""
-        return - 1000 * self.amount
-
+        return -1000 * self.amount

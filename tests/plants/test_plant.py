@@ -10,7 +10,7 @@ def test_wild_plant():
     """Test wild plant"""
     nosh_sprout = NoshSprout()
     assert nosh_sprout.production_per_unit == [NoshBean(12 / 84)]
-    assert nosh_sprout.consumption_per_unit == []
+    assert not nosh_sprout.consumption_per_unit
 
 
 def test_domesticated_plant():
