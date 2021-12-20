@@ -57,7 +57,7 @@ from bionic.resources.resource_bank import ResourceBank
         ),
     ],
 )
-def test_compound(
+def test_compound_balance(
     part_list: List[Processor],
     expected_consumption: List[Resource],
     expected_production: List[Resource],
@@ -97,14 +97,14 @@ def test_compound(
         ),
     ],
 )
-def test_compound_producer(
+def test_compound_resource_producer(
     part_list: List[Processor],
     producer: Processor,
     expected_processor_list: List[Processor],
 ):
-    """Test compound producer"""
+    """Test compound resource producer"""
     compound = Compound(part_list)
-    compound.add_producer(producer)
+    compound.add_resource_producer(producer)
     assert compound.processor_list == expected_processor_list
 
 
@@ -123,14 +123,14 @@ def test_compound_producer(
         ),
     ],
 )
-def test_compound_consumer(
+def test_compound_resource_consumer(
     part_list: List[Processor],
     consumer: Processor,
     expected_processor_list: List[Processor],
 ):
-    """Test compound producer"""
+    """Test compound resource consumer"""
     compound = Compound(part_list)
-    compound.add_consumer(consumer)
+    compound.add_resource_consumer(consumer)
     assert compound.processor_list == expected_processor_list
 
 
@@ -143,23 +143,44 @@ def test_compound_consumer(
             [Duplicant(9), TofuRecipe(2.5)],
         ),
         (
-            [TofuRecipe(3), SpicyTofuRecipe(3)],
-            Duplicant(),
-            [TofuRecipe(3), SpicyTofuRecipe(3), Duplicant(12)],
-        ),
-        (
-            [SpicyTofuRecipe(2)],
-            TofuRecipe(),
-            [SpicyTofuRecipe(2)],
+            [Duplicant(8)],
+            SpicyTofuRecipe(2),
+            [Duplicant(8), SpicyTofuRecipe(2)],
         ),
     ],
 )
-def test_compound_calorie_processor(
+def test_compound_calorie_producer(
     part_list: List[Processor],
     calorie_processor: CalorieProcessor,
     expected_processor_list: List[Processor],
 ):
-    """Test compound producer"""
+    """Test compound calorie producer"""
     compound = Compound(part_list)
-    compound.add_calorie_processor(calorie_processor)
+    compound.add_calorie_producer(calorie_processor)
+    assert compound.processor_list == expected_processor_list
+
+
+@pytest.mark.parametrize(
+    "part_list, calorie_processor, expected_processor_list",
+    [
+        (
+            [TofuRecipe(4)],
+            SpicyTofuRecipe(),
+            [TofuRecipe(4), SpicyTofuRecipe(4)],
+        ),
+        (
+            [TofuRecipe(3), SpicyTofuRecipe(3)],
+            Duplicant(),
+            [TofuRecipe(3), SpicyTofuRecipe(3), Duplicant(12)],
+        ),
+    ],
+)
+def test_compound_calorie_consumer(
+    part_list: List[Processor],
+    calorie_processor: CalorieProcessor,
+    expected_processor_list: List[Processor],
+):
+    """Test compound calorie producer"""
+    compound = Compound(part_list)
+    compound.add_calorie_consumer(calorie_processor)
     assert compound.processor_list == expected_processor_list

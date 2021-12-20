@@ -22,21 +22,25 @@ class Recipe(CalorieProcessor):
         """Product property"""
 
     @property
-    def consumption_per_unit(self) -> List[Resource]:
-        """Consumption per unit property"""
+    def resource_consumption_per_unit(self) -> List[Resource]:
+        """Resource consumption per unit property"""
         return self.ingredient_list
 
     @property
-    def production_per_unit(self) -> List[Resource]:
-        """Production per unit property"""
+    def resource_production_per_unit(self) -> List[Resource]:
+        """Resource production per unit property"""
         return [self.product]
 
     @property
-    def calories_per_unit(self) -> float:
-        """Calories property"""
+    def calorie_consumption_per_unit(self) -> float:
+        """Calorie consumption per unit property"""
         calories = 0.0
         for ingredient in self.ingredient_list:
             if isinstance(ingredient, Food):
-                calories -= ingredient.calories_per_unit
-        calories += self.product.calories_per_unit
+                calories += ingredient.calories_per_unit
         return calories
+
+    @property
+    def calorie_production_per_unit(self) -> float:
+        """Calorie production per unit property"""
+        return self.product.calories_per_unit

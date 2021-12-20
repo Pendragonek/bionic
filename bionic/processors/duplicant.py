@@ -12,16 +12,21 @@ class Duplicant(CalorieProcessor):
     """Duplicant class"""
 
     @property
-    def consumption_per_unit(self) -> List[Resource]:
-        """Consumption per unit property"""
+    def resource_consumption_per_unit(self) -> List[Resource]:
+        """Resource consumption per unit property"""
         return [Oxygen(60000)]
 
     @property
-    def production_per_unit(self) -> List[Resource]:
-        """Production per unit property"""
+    def resource_production_per_unit(self) -> List[Resource]:
+        """Resource production per unit property"""
         return [CarbonDioxide(1200)]
 
     @property
-    def calories_per_unit(self) -> float:
-        """Calorie intake property"""
-        return -1000
+    def calorie_consumption_per_unit(self) -> float:
+        """Calorie consumption per unit property"""
+        return 1000
+
+    @property
+    def calorie_production_per_unit(self) -> float:
+        """Calorie production per unit property"""
+        return 0

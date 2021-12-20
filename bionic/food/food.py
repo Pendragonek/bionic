@@ -25,5 +25,5 @@ class Food(Resource):
 
     @property
     def calories(self) -> float:
-        """Calories property"""
+        """Calorie consumption per unit property"""
         return self.calories_per_unit * self.amount
