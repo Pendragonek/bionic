@@ -27,26 +27,22 @@ class Compound:
             produced_resource = self.production.get(consumed_resource_type)
             amount_diff = consumed_resource.amount - produced_resource.amount
             if amount_diff > 0:
-                self.production.remove(produced_resource)
+                self.production.subtract(produced_resource)
                 self.consumption.add(consumed_resource_type(amount_diff))
             else:
-                self.production.remove(consumed_resource)
+                self.production.subtract(consumed_resource)
         for produced_resource in processor.resource_production:
             produced_resource_type: Type[Resource] = type(produced_resource)
             consumed_resource = self.consumption.get(produced_resource_type)
             amount_diff = produced_resource.amount - consumed_resource.amount
             if amount_diff > 0:
-                self.consumption.remove(consumed_resource)
+                self.consumption.subtract(consumed_resource)
                 self.production.add(produced_resource_type(amount_diff))
             else:
-                self.consumption.remove(produced_resource)
-        print(type(processor))
+                self.consumption.subtract(produced_resource)
         if isinstance(processor, CalorieProcessor):
-            print(self.calories)
             self.calories -= processor.calorie_consumption
-            print(self.calories)
             self.calories += processor.calorie_production
-            print(self.calories)
 
     def add_resource_producer(self, processor: Processor):
         """Add resource producer"""

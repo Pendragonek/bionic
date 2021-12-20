@@ -31,3 +31,8 @@ class Resource(ABC):
         resource_copy = copy(self)
         resource_copy.amount /= other
         return resource_copy
+
+    def __neg__(self) -> "Resource":
+        resource_copy = copy(self)
+        resource_copy.amount = -resource_copy.amount
+        return resource_copy

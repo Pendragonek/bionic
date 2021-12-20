@@ -21,20 +21,22 @@ class ResourceBank:
         """Add resource to bank"""
         if not resource.amount:
             return
-        element_type = type(resource)
-        if element_type in self.resource_dict:
-            self.resource_dict[element_type] += resource
-        else:
-            self.resource_dict[element_type] = resource
-
-    def remove(self, resource: Resource):
-        """Remove resource from bank"""
         resource_type = type(resource)
-        stored_element = self.get(resource_type)
-        if stored_element.amount < resource.amount:
-            raise ArithmeticError
-        if stored_element.amount == 0:
+        if resource_type in self.resource_dict:
+            self.resource_dict[resource_type] += resource
+        else:
+            self.resource_dict[resource_type] = resource
+        if not self.resource_dict[resource_type].amount:
+            del self.resource_dict[resource_type]
+
+    def subtract(self, resource: Resource):
+        """Subtract resource from bank"""
+        if not resource.amount:
             return
-        stored_element.amount -= resource.amount
-        if not stored_element.amount:
+        resource_type = type(resource)
+        if resource_type in self.resource_dict:
+            self.resource_dict[resource_type] -= resource
+        else:
+            self.resource_dict[resource_type] = -resource
+        if not self.resource_dict[resource_type].amount:
             del self.resource_dict[resource_type]

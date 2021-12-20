@@ -16,7 +16,7 @@ from bionic.elements.water import Water
         ([Water(1000, 50), Water(2000, 50)], {Water: Water(3000, 50)}),
     ],
 )
-def test_element_bank_init(
+def test_resource_bank_init(
     arguments_passed: List[Element], expected_state: Dict[Type[Element], Element]
 ):
     """Test resource bank init"""
@@ -30,7 +30,7 @@ def test_element_bank_init(
         ([], Water, Water(0, 0)),
     ],
 )
-def test_element_bank_get(
+def test_resource_bank_get(
     initial_state: List[Element],
     requested_element_type: Type[Element],
     expected_element: Element,
@@ -43,12 +43,14 @@ def test_element_bank_get(
 @pytest.mark.parametrize(
     "initial_state, added_element, expected_state",
     [
-        ([Water(1000, 50)], Water(2000, 80), [Water(3000, 70)]),
-        ([], Water(1000, 50), [Water(1000, 50)]),
-        ([], Water(0, 0), []),
+        ([Water(1000)], Water(2000), [Water(3000)]),
+        ([Water(1000)], Water(-2000), [Water(-1000)]),
+        ([Water(1000)], Water(-1000), []),
+        ([], Water(1000), [Water(1000)]),
+        ([], Water(0), []),
     ],
 )
-def test_element_bank_add(
+def test_resource_bank_add(
     initial_state: List[Element], added_element: Element, expected_state: List[Element]
 ):
     """Test element bank add"""
@@ -62,31 +64,17 @@ def test_element_bank_add(
     [
         ([Water(2000)], Water(1000), [Water(1000)]),
         ([Water(2000)], Water(2000), []),
-        ([], Water(0, 50), []),
+        ([], Water(0), []),
+        ([Water(1000)], Water(2000), [Water(-1000)]),
+        ([], Water(1000), [Water(-1000)]),
     ],
 )
-def test_element_bank_remove(
+def test_resource_bank_remove(
     initial_state: List[Element],
     removed_element: Element,
     expected_state: List[Element],
 ):
     """Test element bank remove"""
     element_bank = ResourceBank(*initial_state)
-    element_bank.remove(removed_element)
+    element_bank.subtract(removed_element)
     assert element_bank.resource_dict == ResourceBank(*expected_state).resource_dict
-
-
-@pytest.mark.parametrize(
-    "initial_state, removed_element",
-    [
-        ([Water(1000)], Water(2000)),
-        ([], Water(1000)),
-    ],
-)
-def test_element_bank_remove_exception(
-    initial_state: List[Element], removed_element: Element
-):
-    """Test element bank remove exception"""
-    element_bank = ResourceBank(*initial_state)
-    with pytest.raises(ArithmeticError):
-        element_bank.remove(removed_element)

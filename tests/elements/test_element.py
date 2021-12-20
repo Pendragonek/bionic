@@ -30,11 +30,11 @@ def test_element_heat(element: Element, expected_heat: float):
         (Water(2000, 10), Water(1000, 40), Water(3000, 20)),
     ],
 )
-def test_element_add(
+def test_element_temperature_add(
     base_element: Element, added_element: Element, expected_element: Element
 ):
     """Test element add"""
-    assert base_element + added_element == expected_element
+    assert base_element.temperature_add(added_element) == expected_element
 
 
 @pytest.mark.parametrize(
@@ -43,10 +43,12 @@ def test_element_add(
         (Water(1000, 10), Hydrogen(1000, 10)),
     ],
 )
-def test_element_add_exception(base_element: Element, added_element: Element):
+def test_element_temperature_add_exception(
+    base_element: Element, added_element: Element
+):
     """Test element add exception"""
     with pytest.raises(TypeError):
-        assert base_element + added_element
+        assert base_element.temperature_add(added_element)
 
 
 @pytest.mark.parametrize(

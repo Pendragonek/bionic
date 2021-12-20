@@ -22,7 +22,8 @@ class Element(Resource):
         """Return heat amount"""
         return self.shc * self.amount * self.temperature
 
-    def __add__(self, other: "Element") -> "Element":
+    def temperature_add(self, other: "Element") -> "Element":
+        """Temperature add"""
         element_type = type(self)
         if not isinstance(other, element_type):
             raise TypeError
