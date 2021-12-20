@@ -23,52 +23,44 @@ from bionic.resources.resource_bank import ResourceBank
 
 
 @pytest.mark.parametrize(
-    "part_list, expected_consumption, expected_production, expected_calories",
+    "part_list, expected_resource_balance, expected_calories",
     [
         (
             [TofuRecipe(4)],
-            [NoshBean(24), Water(200000)],
-            [Tofu(4)],
+            [NoshBean(-24), Water(-200000), Tofu(4)],
             14400,
         ),
         (
             [TofuRecipe(2.5)],
-            [NoshBean(15), Water(125000)],
-            [Tofu(2.5)],
+            [NoshBean(-15), Water(-125000), Tofu(2.5)],
             9000,
         ),
         (
             [TofuRecipe(1), SpicyTofuRecipe(1)],
-            [NoshBean(6), Water(50000), PinchaPeppernut(1)],
-            [SpicyTofu(1)],
+            [NoshBean(-6), Water(-50000), PinchaPeppernut(-1), SpicyTofu(1)],
             4000,
         ),
         (
             [TofuRecipe(1), NoshSprout(7)],
-            [NoshBean(5), Water(50000)],
-            [Tofu(1)],
+            [NoshBean(-5), Water(-50000), Tofu(1)],
             3600,
         ),
         (
             [TofuRecipe(1), NoshSprout(7, domesticated=True)],
-            [NoshBean(2), Water(50000), Ethanol(140000), Dirt(35000)],
-            [Tofu(1)],
+            [NoshBean(-2), Water(-50000), Ethanol(-140000), Dirt(-35000), Tofu(1)],
             3600,
         ),
     ],
 )
 def test_compound_balance(
     part_list: List[Processor],
-    expected_consumption: List[Resource],
-    expected_production: List[Resource],
+    expected_resource_balance: List[Resource],
     expected_calories: float,
 ):
     """Test compound"""
     compound = Compound(part_list)
-    expected_consumption_bank = ResourceBank(*expected_consumption)
-    expected_production_bank = ResourceBank(*expected_production)
-    assert compound.consumption.resource_dict == expected_consumption_bank.resource_dict
-    assert compound.production.resource_dict == expected_production_bank.resource_dict
+    expected_resource_balance_bank = ResourceBank(*expected_resource_balance)
+    assert compound.resource_balance == expected_resource_balance_bank
     assert compound.calories == expected_calories
 
 

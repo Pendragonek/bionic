@@ -1,6 +1,6 @@
 """Resource bank"""
 
-from typing import Dict, Type
+from typing import Any, Dict, Type
 
 from bionic.resources.resource import Resource
 
@@ -12,6 +12,11 @@ class ResourceBank:
         self.resource_dict: Dict[Type[Resource], Resource] = {}
         for resource in args:
             self.add(resource)
+
+    def __eq__(self, other: Any) -> bool:
+        if not isinstance(other, ResourceBank):
+            return False
+        return self.resource_dict == other.resource_dict
 
     def get(self, resource_type: Type[Resource]) -> Resource:
         """Get resource based on resource type"""

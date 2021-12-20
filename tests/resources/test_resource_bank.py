@@ -10,17 +10,17 @@ from bionic.elements.water import Water
 
 
 @pytest.mark.parametrize(
-    "arguments_passed, expected_state",
+    "first_argument_list, second_argument_list",
     [
-        ([Water(1000, 50)], {Water: Water(1000, 50)}),
-        ([Water(1000, 50), Water(2000, 50)], {Water: Water(3000, 50)}),
+        ([Water(1000, 50)], [Water(1000, 50)]),
+        ([Water(1000, 50), Water(2000, 50)], [Water(3000, 50)]),
     ],
 )
 def test_resource_bank_init(
-    arguments_passed: List[Element], expected_state: Dict[Type[Element], Element]
+    first_argument_list: List[Element], second_argument_list: List[Element]
 ):
     """Test resource bank init"""
-    assert ResourceBank(*arguments_passed).resource_dict == expected_state
+    assert ResourceBank(*first_argument_list) == ResourceBank(*second_argument_list)
 
 
 @pytest.mark.parametrize(
