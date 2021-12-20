@@ -2,6 +2,7 @@
 
 from typing import List, Type
 
+from bionic.processors.calorie_processor import CalorieProcessor
 from bionic.processors.duplicant import Duplicant
 from bionic.processors.processor import Processor
 from bionic.recipes.recipe import Recipe
@@ -63,3 +64,10 @@ class Compound:
                 continue
             processor.amount = supply.amount / product.amount
             self.add_processor(processor)
+
+    def add_calorie_processor(self, calorie_processor: CalorieProcessor):
+        """Add calorie processor"""
+        calorie_processor.amount = -self.calories / calorie_processor.calories_per_unit
+        if calorie_processor.amount < 0:
+            return
+        self.add_processor(calorie_processor)

@@ -7,7 +7,7 @@ from typing import List
 from bionic.resources.resource import Resource
 
 
-@dataclass
+@dataclass  # type: ignore
 class Processor(ABC):
     """Processor class"""
 

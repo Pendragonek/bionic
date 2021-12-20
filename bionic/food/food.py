@@ -10,20 +10,20 @@ class Food(Resource):
 
     @property
     @abstractmethod
-    def calories_per_unit(self) -> int:
-        """Return calories per unit of food"""
+    def calories_per_unit(self) -> float:
+        """Calories per unit property"""
 
     @property
     @abstractmethod
     def quality(self) -> int:
-        """Return quality of food"""
+        """Quality property"""
 
     @property
     @abstractmethod
     def spoil_time(self) -> int:
-        """Return spoil time of food"""
+        """Spoil time property"""
 
     @property
     def calories(self) -> float:
-        """Return calories of food"""
-        return self.amount * self.calories_per_unit
+        """Calories property"""
+        return self.calories_per_unit * self.amount

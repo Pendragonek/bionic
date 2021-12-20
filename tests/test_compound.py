@@ -5,12 +5,16 @@ from typing import List
 import pytest
 
 from bionic.compound import Compound
+from bionic.elements.dirt import Dirt
+from bionic.elements.ethanol import Ethanol
 from bionic.elements.water import Water
 from bionic.food.nosh_bean import NoshBean
 from bionic.food.pincha_peppernut import PinchaPeppernut
 from bionic.food.spicy_tofu import SpicyTofu
 from bionic.food.tofu import Tofu
 from bionic.plants.nosh_sprout import NoshSprout
+from bionic.processors.calorie_processor import CalorieProcessor
+from bionic.processors.duplicant import Duplicant
 from bionic.processors.processor import Processor
 from bionic.recipes.spicy_tofu_recipe import SpicyTofuRecipe
 from bionic.recipes.tofu_recipe import TofuRecipe
@@ -45,6 +49,12 @@ from bionic.resources.resource_bank import ResourceBank
             [Tofu(1)],
             3600,
         ),
+        (
+            [TofuRecipe(1), NoshSprout(7, domesticated=True)],
+            [NoshBean(2), Water(50000), Ethanol(140000), Dirt(35000)],
+            [Tofu(1)],
+            3600,
+        ),
     ],
 )
 def test_compound(
@@ -74,6 +84,16 @@ def test_compound(
             [SpicyTofuRecipe(1.1)],
             TofuRecipe(),
             [SpicyTofuRecipe(1.1), TofuRecipe(1.1)],
+        ),
+        (
+            [TofuRecipe(1)],
+            NoshSprout(),
+            [TofuRecipe(1), NoshSprout(42)],
+        ),
+        (
+            [TofuRecipe(1)],
+            NoshSprout(domesticated=True),
+            [TofuRecipe(1), NoshSprout(10.5, domesticated=True)],
         ),
     ],
 )
@@ -111,4 +131,35 @@ def test_compound_consumer(
     """Test compound producer"""
     compound = Compound(part_list)
     compound.add_consumer(consumer)
+    assert compound.processor_list == expected_processor_list
+
+
+@pytest.mark.parametrize(
+    "part_list, calorie_processor, expected_processor_list",
+    [
+        (
+            [Duplicant(9)],
+            TofuRecipe(),
+            [Duplicant(9), TofuRecipe(2.5)],
+        ),
+        (
+            [TofuRecipe(3), SpicyTofuRecipe(3)],
+            Duplicant(),
+            [TofuRecipe(3), SpicyTofuRecipe(3), Duplicant(12)],
+        ),
+        (
+            [SpicyTofuRecipe(2)],
+            TofuRecipe(),
+            [SpicyTofuRecipe(2)],
+        ),
+    ],
+)
+def test_compound_calorie_processor(
+    part_list: List[Processor],
+    calorie_processor: CalorieProcessor,
+    expected_processor_list: List[Processor],
+):
+    """Test compound producer"""
+    compound = Compound(part_list)
+    compound.add_calorie_processor(calorie_processor)
     assert compound.processor_list == expected_processor_list

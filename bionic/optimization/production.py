@@ -1,10 +1,10 @@
 """Production"""
 
 from bionic.buildings.geyser import Geyser
-from bionic.elements.element import Element
+from bionic.resources.resource import Resource
 
 
-def calculate_geyser_average_production(geyser: Geyser) -> Element:
+def calculate_geyser_average_production(geyser: Geyser) -> Resource:
     """Calculate average production"""
     average_production = (
         geyser.output_element

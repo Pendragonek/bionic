@@ -36,7 +36,7 @@ class Plant(Processor):
 
     @property
     def production_per_unit(self) -> List[Resource]:
-        """Return production per cycle of the plant"""
+        """Production per unit property"""
         base_production = self.crop / self.growth_speed
         if self.domesticated:
             base_production *= 4
@@ -44,7 +44,7 @@ class Plant(Processor):
 
     @property
     def consumption_per_unit(self) -> List[Resource]:
-        """Return consumption per cycle of the plant"""
+        """Consumption per unit property"""
         if self.domesticated:
             return [self.irrigation, self.fertilizer]
         return []

@@ -4,11 +4,11 @@ from abc import abstractmethod
 from typing import List
 
 from bionic.food.food import Food
-from bionic.processors.processor import Processor
+from bionic.processors.calorie_processor import CalorieProcessor
 from bionic.resources.resource import Resource
 
 
-class Recipe(Processor):
+class Recipe(CalorieProcessor):
     """Recipe class"""
 
     @property
@@ -23,23 +23,20 @@ class Recipe(Processor):
 
     @property
     def consumption_per_unit(self) -> List[Resource]:
-        """Consumption property"""
-        ingredient_list = []
-        for ingredient in self.ingredient_list:
-            ingredient_list.append(ingredient)
-        return ingredient_list
+        """Consumption per unit property"""
+        return self.ingredient_list
 
     @property
     def production_per_unit(self) -> List[Resource]:
-        """Production property"""
+        """Production per unit property"""
         return [self.product]
 
     @property
-    def calories(self) -> float:
+    def calories_per_unit(self) -> float:
         """Calories property"""
         calories = 0.0
         for ingredient in self.ingredient_list:
             if isinstance(ingredient, Food):
-                calories -= ingredient.calories
-        calories += self.product.calories
-        return calories * self.amount
+                calories -= ingredient.calories_per_unit
+        calories += self.product.calories_per_unit
+        return calories

@@ -8,15 +8,15 @@ class Tofu(Food):
 
     @property
     def calories_per_unit(self) -> int:
-        """Return calories per unit of food"""
+        """Calories per unit property"""
         return 3600
 
     @property
     def quality(self) -> int:
-        """Return quality of food"""
+        """Quality property"""
         return 2
 
     @property
     def spoil_time(self) -> int:
-        """Return spoil time of food"""
+        """Spoil time property"""
         return 2
