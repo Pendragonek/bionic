@@ -12,12 +12,12 @@ class Duplicant(Processor):
     """Duplicant class"""
 
     @property
-    def consumption(self) -> List[Resource]:
+    def consumption_per_unit(self) -> List[Resource]:
         """Consumption property"""
         return [Oxygen(60000)]
 
     @property
-    def production(self) -> List[Resource]:
+    def production_per_unit(self) -> List[Resource]:
         """Production property"""
         return [CarbonDioxide(1200)]
 

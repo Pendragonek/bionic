@@ -22,17 +22,17 @@ class Recipe(Processor):
         """Product property"""
 
     @property
-    def consumption(self) -> List[Resource]:
+    def consumption_per_unit(self) -> List[Resource]:
         """Consumption property"""
         ingredient_list = list()
         for ingredient in self.ingredient_list:
-            ingredient_list.append(ingredient * self.amount)
+            ingredient_list.append(ingredient)
         return ingredient_list
 
     @property
-    def production(self) -> List[Resource]:
+    def production_per_unit(self) -> List[Resource]:
         """Production property"""
-        return [self.product * self.amount]
+        return [self.product]
 
     @property
     def calories(self) -> float:

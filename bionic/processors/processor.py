@@ -15,10 +15,21 @@ class Processor(ABC):
 
     @property
     @abstractmethod
-    def consumption(self) -> List[Resource]:
-        """Consumption property"""
+    def consumption_per_unit(self) -> List[Resource]:
+        """Consumption per unit property"""
 
     @property
     @abstractmethod
+    def production_per_unit(self) -> List[Resource]:
+        """Production per unit property"""
+
+    @property
+    def consumption(self) -> List[Resource]:
+        """Consumption property"""
+        return [resource * self.amount for resource in self.consumption_per_unit]
+
+    @property
     def production(self) -> List[Resource]:
         """Production property"""
+        return [resource * self.amount for resource in self.production_per_unit]
+

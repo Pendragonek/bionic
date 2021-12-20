@@ -10,6 +10,7 @@ from bionic.food.nosh_bean import NoshBean
 from bionic.food.pincha_peppernut import PinchaPeppernut
 from bionic.food.spicy_tofu import SpicyTofu
 from bionic.food.tofu import Tofu
+from bionic.plants.nosh_sprout import NoshSprout
 from bionic.processors.processor import Processor
 from bionic.recipes.spicy_tofu_recipe import SpicyTofuRecipe
 from bionic.recipes.tofu_recipe import TofuRecipe
@@ -20,12 +21,6 @@ from bionic.resources.resource_bank import ResourceBank
 @pytest.mark.parametrize(
     "part_list, expected_consumption, expected_production, expected_calories",
     [
-        (
-            [TofuRecipe(1)],
-            [NoshBean(6), Water(50000)],
-            [Tofu(1)],
-            3600,
-        ),
         (
             [TofuRecipe(4)],
             [NoshBean(24), Water(200000)],
@@ -43,6 +38,12 @@ from bionic.resources.resource_bank import ResourceBank
             [NoshBean(6), Water(50000), PinchaPeppernut(1)],
             [SpicyTofu(1)],
             4000,
+        ),
+        (
+            [TofuRecipe(1), NoshSprout(7)],
+            [NoshBean(5), Water(50000)],
+            [Tofu(1)],
+            3600,
         ),
     ],
 )
