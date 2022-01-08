@@ -13,8 +13,8 @@ from bionic.elements.water import Water
 @pytest.mark.parametrize(
     "element, expected_heat",
     [
-        (Water(1000, 10), 41790),
-        (Hydrogen(2000, 20), 96000),
+        (Water(amount=1000, temperature=10), 41790),
+        (Hydrogen(amount=2000, temperature=20), 96000),
     ],
 )
 def test_element_heat(element: Element, expected_heat: float):
@@ -25,9 +25,21 @@ def test_element_heat(element: Element, expected_heat: float):
 @pytest.mark.parametrize(
     "base_element, added_element, expected_element",
     [
-        (Water(1000, 10), Water(1000, 10), Water(2000, 10)),
-        (Water(1000, 10), Water(1000, 30), Water(2000, 20)),
-        (Water(2000, 10), Water(1000, 40), Water(3000, 20)),
+        (
+            Water(amount=1000, temperature=10),
+            Water(amount=1000, temperature=10),
+            Water(amount=2000, temperature=10),
+        ),
+        (
+            Water(amount=1000, temperature=10),
+            Water(amount=1000, temperature=30),
+            Water(amount=2000, temperature=20),
+        ),
+        (
+            Water(amount=2000, temperature=10),
+            Water(amount=1000, temperature=40),
+            Water(amount=3000, temperature=20),
+        ),
     ],
 )
 def test_element_temperature_add(
@@ -40,7 +52,7 @@ def test_element_temperature_add(
 @pytest.mark.parametrize(
     "base_element, added_element",
     [
-        (Water(1000, 10), Hydrogen(1000, 10)),
+        (Water(amount=1000, temperature=10), Hydrogen(amount=1000, temperature=10)),
     ],
 )
 def test_element_temperature_add_exception(
@@ -54,8 +66,8 @@ def test_element_temperature_add_exception(
 @pytest.mark.parametrize(
     "base_element, added_element, expected_element",
     [
-        (Water(1000), 2, Water(2000)),
-        (Water(1000), 0.5, Water(500)),
+        (Water(amount=1000), 2, Water(amount=2000)),
+        (Water(amount=1000), 0.5, Water(amount=500)),
     ],
 )
 def test_element_multiply(
@@ -68,8 +80,8 @@ def test_element_multiply(
 @pytest.mark.parametrize(
     "base_element, added_element, expected_element",
     [
-        (Water(1000), 2, Water(500)),
-        (Water(1000), 0.5, Water(2000)),
+        (Water(amount=1000), 2, Water(amount=500)),
+        (Water(amount=1000), 0.5, Water(amount=2000)),
     ],
 )
 def test_element_divide(
@@ -82,10 +94,28 @@ def test_element_divide(
 @pytest.mark.parametrize(
     "element_list, expected",
     [
-        ([Hydrogen(1000, 10)], 10),
-        ([Hydrogen(1000, 10), Hydrogen(1000, 40)], 25),
-        ([Hydrogen(1000, 10), Hydrogen(4000, 40)], 34),
-        ([Hydrogen(5000, 10), IgneousRock(4000, 40)], 17.5),
+        ([Hydrogen(amount=1000, temperature=10)], 10),
+        (
+            [
+                Hydrogen(amount=1000, temperature=10),
+                Hydrogen(amount=1000, temperature=40),
+            ],
+            25,
+        ),
+        (
+            [
+                Hydrogen(amount=1000, temperature=10),
+                Hydrogen(amount=4000, temperature=40),
+            ],
+            34,
+        ),
+        (
+            [
+                Hydrogen(amount=5000, temperature=10),
+                IgneousRock(amount=4000, temperature=40),
+            ],
+            17.5,
+        ),
     ],
 )
 def test_calculate_combined_element_temperature(

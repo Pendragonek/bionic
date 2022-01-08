@@ -7,15 +7,17 @@ license = "MIT"
 
 [tool.poetry.dependencies]
 python = "^3.8"
+pydantic = "^1.9.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.5"
-black = "^21.11b1"
-pylint = "^2.12.1"
-mypy = "^0.910"
+black = "^21.12b0"
+pylint = "^2.12.2"
+mypy = "^0.931"
 
 [tool.pylint.base]
 max-line-length = 88
+extension-pkg-allow-list = ["pydantic"]
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

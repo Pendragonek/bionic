@@ -1,12 +1,10 @@
 """Element"""
 
 from abc import abstractmethod
-from dataclasses import dataclass
 
 from bionic.resources.resource import Resource
 
 
-@dataclass  # type: ignore
 class Element(Resource):
     """Element class"""
 
@@ -31,7 +29,7 @@ class Element(Resource):
         temperature = (
             self.amount * self.temperature + other.amount * other.temperature
         ) / mass
-        return element_type(mass, temperature)
+        return element_type(amount=mass, temperature=temperature)
 
 
 def calculate_combined_element_temperature(*element_list: Element) -> float:

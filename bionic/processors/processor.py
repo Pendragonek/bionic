@@ -1,14 +1,14 @@
 """Processor"""
 
 from abc import ABC, abstractmethod
-from dataclasses import dataclass
 from typing import List
+
+from pydantic import BaseModel
 
 from bionic.resources.resource import Resource
 
 
-@dataclass  # type: ignore
-class Processor(ABC):
+class Processor(BaseModel, ABC):
     """Processor class"""
 
     amount: float = 0

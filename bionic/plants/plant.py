@@ -1,14 +1,12 @@
 """Plant"""
 
 from abc import abstractmethod
-from dataclasses import dataclass
 from typing import List
 
 from bionic.processors.processor import Processor
 from bionic.resources.resource import Resource
 
 
-@dataclass  # type: ignore
 class Plant(Processor):
     """Plant class"""
 

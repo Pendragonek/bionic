@@ -1,6 +1,6 @@
 """Geyser class"""
 
-from dataclasses import dataclass
+from pydantic import BaseModel
 
 from bionic.elements.element import Element
 from bionic.resources.resource_bank import ResourceBank
@@ -8,8 +8,7 @@ from bionic.resources.resource_bank import ResourceBank
 CYCLE_LENGTH = 600
 
 
-@dataclass
-class Geyser:
+class Geyser(BaseModel):
     """Geyser class"""
 
     output_element: Element

@@ -15,16 +15,16 @@ from bionic.elements.water import Water
     "initial_state, expected_state",
     [
         (
-            [Steam(4000, 150), Water(1000, 95)],
-            [Steam(2000, 150), Water(3000, 95)],
+            [Steam(amount=4000, temperature=150), Water(amount=1000, temperature=95)],
+            [Steam(amount=2000, temperature=150), Water(amount=3000, temperature=95)],
         ),
         (
-            [Steam(4000, 110)],
-            [Steam(4000, 110)],
+            [Steam(amount=4000, temperature=110)],
+            [Steam(amount=4000, temperature=110)],
         ),
         (
-            [Steam(1000, 150)],
-            [Water(1000, 95)],
+            [Steam(amount=1000, temperature=150)],
+            [Water(amount=1000, temperature=95)],
         ),
     ],
 )

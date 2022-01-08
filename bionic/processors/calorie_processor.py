@@ -1,24 +1,12 @@
 """Calorie processor"""
 
 from abc import abstractmethod
-from typing import List
 
 from bionic.processors.processor import Processor
-from bionic.resources.resource import Resource
 
 
 class CalorieProcessor(Processor):
     """Calorie processor class"""
-
-    @property
-    @abstractmethod
-    def resource_consumption_per_unit(self) -> List[Resource]:
-        """Resource consumption per unit property"""
-
-    @property
-    @abstractmethod
-    def resource_production_per_unit(self) -> List[Resource]:
-        """Resource production per unit property"""
 
     @property
     @abstractmethod

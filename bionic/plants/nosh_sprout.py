@@ -18,14 +18,14 @@ class NoshSprout(Plant):
     @property
     def irrigation(self) -> Resource:
         """Return irrigation per cycle of the plant"""
-        return Ethanol(20000)
+        return Ethanol(amount=20000)
 
     @property
     def fertilizer(self) -> Resource:
         """Return fertilizer per cycle of the plant"""
-        return Dirt(5000)
+        return Dirt(amount=5000)
 
     @property
     def crop(self) -> Resource:
         """Return crop of the plant"""
-        return NoshBean(12)
+        return NoshBean(amount=12)

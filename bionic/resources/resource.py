@@ -2,12 +2,12 @@
 
 from abc import ABC
 from copy import copy
-from dataclasses import dataclass
 from typing import Union
 
+from pydantic import BaseModel
 
-@dataclass
-class Resource(ABC):
+
+class Resource(BaseModel, ABC):
     """Resource class"""
 
     amount: float = 0

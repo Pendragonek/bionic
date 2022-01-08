@@ -1,6 +1,6 @@
 """Test element bank"""
 
-from typing import Dict, List, Type
+from typing import List, Type
 
 import pytest
 
@@ -12,8 +12,11 @@ from bionic.elements.water import Water
 @pytest.mark.parametrize(
     "first_argument_list, second_argument_list",
     [
-        ([Water(1000, 50)], [Water(1000, 50)]),
-        ([Water(1000, 50), Water(2000, 50)], [Water(3000, 50)]),
+        ([Water(amount=1000, temperature=50)], [Water(amount=1000, temperature=50)]),
+        (
+            [Water(amount=1000, temperature=50), Water(amount=2000, temperature=50)],
+            [Water(amount=3000, temperature=50)],
+        ),
     ],
 )
 def test_resource_bank_init(
@@ -26,8 +29,12 @@ def test_resource_bank_init(
 @pytest.mark.parametrize(
     "initial_state, requested_element_type, expected_element",
     [
-        ([Water(1000, 50)], Water, Water(1000, 50)),
-        ([], Water, Water(0, 0)),
+        (
+            [Water(amount=1000, temperature=50)],
+            Water,
+            Water(amount=1000, temperature=50),
+        ),
+        ([], Water, Water()),
     ],
 )
 def test_resource_bank_get(
@@ -43,11 +50,11 @@ def test_resource_bank_get(
 @pytest.mark.parametrize(
     "initial_state, added_element, expected_state",
     [
-        ([Water(1000)], Water(2000), [Water(3000)]),
-        ([Water(1000)], Water(-2000), [Water(-1000)]),
-        ([Water(1000)], Water(-1000), []),
-        ([], Water(1000), [Water(1000)]),
-        ([], Water(0), []),
+        ([Water(amount=1000)], Water(amount=2000), [Water(amount=3000)]),
+        ([Water(amount=1000)], Water(amount=-2000), [Water(amount=-1000)]),
+        ([Water(amount=1000)], Water(amount=-1000), []),
+        ([], Water(amount=1000), [Water(amount=1000)]),
+        ([], Water(), []),
     ],
 )
 def test_resource_bank_add(
@@ -62,11 +69,11 @@ def test_resource_bank_add(
 @pytest.mark.parametrize(
     "initial_state, removed_element, expected_state",
     [
-        ([Water(2000)], Water(1000), [Water(1000)]),
-        ([Water(2000)], Water(2000), []),
-        ([], Water(0), []),
-        ([Water(1000)], Water(2000), [Water(-1000)]),
-        ([], Water(1000), [Water(-1000)]),
+        ([Water(amount=2000)], Water(amount=1000), [Water(amount=1000)]),
+        ([Water(amount=2000)], Water(amount=2000), []),
+        ([], Water(), []),
+        ([Water(amount=1000)], Water(amount=2000), [Water(amount=-1000)]),
+        ([], Water(amount=1000), [Water(amount=-1000)]),
     ],
 )
 def test_resource_bank_remove(

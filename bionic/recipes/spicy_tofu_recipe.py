@@ -16,9 +16,9 @@ class SpicyTofuRecipe(Recipe):
     @property
     def ingredient_list(self) -> List[Resource]:
         """Ingredient list property"""
-        return [Tofu(1), PinchaPeppernut(1)]
+        return [Tofu(amount=1), PinchaPeppernut(amount=1)]
 
     @property
     def product(self) -> Food:
         """Product property"""
-        return SpicyTofu(1)
+        return SpicyTofu(amount=1)

@@ -9,8 +9,14 @@ from bionic.elements.element import Element
 from bionic.resources.resource_bank import ResourceBank
 from bionic.elements.steam import Steam
 
-TEST_GEYSER_OUTPUT_ELEMENT = Steam(1000, 110)
-TEST_GEYSER = Geyser(TEST_GEYSER_OUTPUT_ELEMENT, 10, 20, 2.4, 4.6)
+TEST_GEYSER_OUTPUT_ELEMENT = Steam(amount=1000, temperature=110)
+TEST_GEYSER = Geyser(
+    output_element=TEST_GEYSER_OUTPUT_ELEMENT,
+    eruption_time=10,
+    eruption_period=20,
+    activity_time=2.4,
+    activity_period=4.6,
+)
 
 
 @pytest.mark.parametrize(

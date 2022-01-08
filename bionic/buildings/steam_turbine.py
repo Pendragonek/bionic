@@ -17,8 +17,10 @@ class SteamTurbine:
         if not steam_element.amount or steam_element.temperature < 125:
             return
         if steam_element.amount <= max_mass:
-            resource_bank.add(Water(steam_element.amount, 95))
+            resource_bank.add(Water(amount=steam_element.amount, temperature=95))
             resource_bank.subtract(steam_element)
         else:
-            resource_bank.add(Water(max_mass, 95))
-            resource_bank.subtract(Steam(max_mass, steam_element.temperature))
+            resource_bank.add(Water(amount=max_mass, temperature=95))
+            resource_bank.subtract(
+                Steam(amount=max_mass, temperature=steam_element.temperature)
+            )

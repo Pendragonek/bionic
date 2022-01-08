@@ -9,12 +9,15 @@ from bionic.plants.nosh_sprout import NoshSprout
 def test_wild_plant():
     """Test wild plant"""
     nosh_sprout = NoshSprout()
-    assert nosh_sprout.resource_production_per_unit == [NoshBean(12 / 84)]
+    assert nosh_sprout.resource_production_per_unit == [NoshBean(amount=12 / 84)]
     assert not nosh_sprout.resource_consumption_per_unit
 
 
 def test_domesticated_plant():
     """Test domesticated plant"""
     nosh_sprout = NoshSprout(domesticated=True)
-    assert nosh_sprout.resource_production_per_unit == [NoshBean(12 / 84 * 4)]
-    assert nosh_sprout.resource_consumption_per_unit == [Ethanol(20000), Dirt(5000)]
+    assert nosh_sprout.resource_production_per_unit == [NoshBean(amount=12 / 84 * 4)]
+    assert nosh_sprout.resource_consumption_per_unit == [
+        Ethanol(amount=20000),
+        Dirt(amount=5000),
+    ]
