@@ -30,23 +30,23 @@ class Compound:
 
     def add_resource_producer(self, processor: Processor):
         """Add resource producer"""
-        processor.amount = 1
         for product in processor.resource_production_per_unit:
             demand = self.resource_balance.get(type(product))
             if demand.amount >= 0:
                 continue
             processor.amount = -demand.amount / product.amount
             self.add_processor(processor)
+            break
 
     def add_resource_consumer(self, processor: Processor):
         """Add resource consumer"""
-        processor.amount = 1
         for product in processor.resource_consumption_per_unit:
             supply = self.resource_balance.get(type(product))
             if supply.amount <= 0:
                 continue
             processor.amount = supply.amount / product.amount
             self.add_processor(processor)
+            break
 
     def add_calorie_producer(self, calorie_processor: CalorieProcessor):
         """Add calorie producer"""

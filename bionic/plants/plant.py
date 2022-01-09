@@ -1,7 +1,7 @@
 """Plant"""
 
 from abc import abstractmethod
-from typing import List
+from typing import List, Optional
 
 from bionic.processors.processor import Processor
 from bionic.resources.resource import Resource
@@ -24,7 +24,7 @@ class Plant(Processor):
 
     @property
     @abstractmethod
-    def fertilizer(self) -> Resource:
+    def fertilizer(self) -> Optional[Resource]:
         """Fertilizer property"""
 
     @property
@@ -43,6 +43,10 @@ class Plant(Processor):
     @property
     def resource_consumption_per_unit(self) -> List[Resource]:
         """Resource consumption per unit property"""
+        consumption = []
         if self.domesticated:
-            return [self.irrigation, self.fertilizer]
-        return []
+            if self.irrigation is not None:
+                consumption.append(self.irrigation)
+            if self.fertilizer is not None:
+                consumption.append(self.fertilizer)
+        return consumption
