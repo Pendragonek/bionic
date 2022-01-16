@@ -1,5 +1,6 @@
 """Compound"""
 
+import json
 from typing import List
 
 from bionic.processors.calorie_processor import CalorieProcessor
@@ -65,3 +66,15 @@ class Compound:
             self.calories / calorie_processor.calorie_consumption_per_unit
         )
         self.add_processor(calorie_processor)
+
+    def save_to_file(self, file_name: str):
+        """Save current state to file"""
+        saved_data = {}
+        for processor in self.processor_list:
+            processor_name = type(processor).__name__
+            if processor_name not in saved_data:
+                saved_data[processor_name] = processor.amount
+            else:
+                saved_data[processor_name] += processor.amount
+        with open(file_name, "w", encoding="utf-8") as file:
+            json.dump(saved_data, file)
