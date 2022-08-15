@@ -1,8 +1,8 @@
 """Steam turbine class"""
 
-from bionic.resources.resource_bank import ResourceBank
 from bionic.elements.steam import Steam
 from bionic.elements.water import Water
+from bionic.resources.resource_bank import ResourceBank
 
 
 class SteamTurbine:

@@ -69,12 +69,11 @@ class Compound:
 
     def save_to_file(self, file_name: str):
         """Save current state to file"""
-        saved_data = {}
+        saved_data = []
         for processor in self.processor_list:
             processor_name = type(processor).__name__
-            if processor_name not in saved_data:
-                saved_data[processor_name] = processor.amount
-            else:
-                saved_data[processor_name] += processor.amount
+            processor_dict = processor.dict()
+            processor_dict["name"] = processor_name
+            saved_data.append(processor_dict)
         with open(file_name, "w", encoding="utf-8") as file:
             json.dump(saved_data, file)

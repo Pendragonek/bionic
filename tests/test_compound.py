@@ -5,10 +5,7 @@ from typing import Dict, List
 
 import pytest
 
-from bionic.buildings.compost import Compost
-from bionic.buildings.ethanol_distiller import EthanolDistiller
 from bionic.compound import Compound
-from bionic.critters.pip import Pip
 from bionic.elements.dirt import Dirt
 from bionic.elements.ethanol import Ethanol
 from bionic.elements.water import Water
@@ -16,16 +13,11 @@ from bionic.food.nosh_bean import NoshBean
 from bionic.food.pincha_peppernut import PinchaPeppernut
 from bionic.food.spicy_tofu import SpicyTofu
 from bionic.food.tofu import Tofu
-from bionic.plants.arbor_tree import ArborTree
-from bionic.plants.bristle_blossom import BristleBlossom
 from bionic.plants.nosh_sprout import NoshSprout
-from bionic.plants.pincha_pepper import PinchaPepper
 from bionic.processors.calorie_processor import CalorieProcessor
 from bionic.processors.duplicant import Duplicant
 from bionic.processors.processor import Processor
-from bionic.recipes.gristle_berry_recipe import GristleBerryRecipe
 from bionic.recipes.spicy_tofu_recipe import SpicyTofuRecipe
-from bionic.recipes.stuffed_berry_recipe import StuffedBerryRecipe
 from bionic.recipes.tofu_recipe import TofuRecipe
 from bionic.resources.resource import Resource
 from bionic.resources.resource_bank import ResourceBank
@@ -201,13 +193,22 @@ def test_compound_calorie_consumer(
 @pytest.mark.parametrize(
     "processor_list, expected_data",
     [
-        ([], {}),
-        ([TofuRecipe(amount=2)], {"TofuRecipe": 2.0}),
+        ([], []),
+        ([TofuRecipe(amount=2)], [{"name": "TofuRecipe", "amount": 2.0}]),
         (
             [TofuRecipe(amount=2), SpicyTofuRecipe(amount=1)],
-            {"TofuRecipe": 2.0, "SpicyTofuRecipe": 1.0},
+            [
+                {"name": "TofuRecipe", "amount": 2.0},
+                {"name": "SpicyTofuRecipe", "amount": 1.0},
+            ],
         ),
-        ([TofuRecipe(amount=2), TofuRecipe(amount=1)], {"TofuRecipe": 3.0}),
+        (
+            [TofuRecipe(amount=2), TofuRecipe(amount=1)],
+            [
+                {"name": "TofuRecipe", "amount": 2.0},
+                {"name": "TofuRecipe", "amount": 1.0},
+            ]
+        ),
     ],
 )
 def test_save_to_file(processor_list: List[Processor], expected_data: Dict[str, float]):
@@ -218,23 +219,3 @@ def test_save_to_file(processor_list: List[Processor], expected_data: Dict[str, 
     with open(file_name, encoding="utf-8") as file:
         data = json.load(file)
     assert data == expected_data
-
-
-def test_stuff():
-    """Test stuff"""
-    compound = Compound([ArborTree(amount=12)])
-    compound.add_processor(Pip(amount=12))
-    compound.add_resource_consumer(EthanolDistiller())
-    compound.add_resource_consumer(Compost())
-    compound.add_resource_consumer(NoshSprout(domesticated=True))
-    compound.add_resource_consumer(TofuRecipe())
-    compound.add_resource_consumer(SpicyTofuRecipe())
-    compound.add_processor(Duplicant(amount=12))
-    compound.add_calorie_producer(StuffedBerryRecipe())
-    compound.add_resource_producer(PinchaPepper())
-    compound.add_resource_producer(GristleBerryRecipe())
-    compound.add_resource_producer(BristleBlossom(domesticated=True))
-    print(compound.processor_list)
-    print(compound.resource_balance.resource_dict)
-    print(compound.calories)
-    assert False
