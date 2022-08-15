@@ -22,6 +22,8 @@ from bionic.recipes.tofu_recipe import TofuRecipe
 from bionic.resources.resource import Resource
 from bionic.resources.resource_bank import ResourceBank
 
+TEST_FILE_NAME = "test_file.json"
+
 
 @pytest.mark.parametrize(
     "processor_list, expected_resource_balance, expected_calories",
@@ -101,7 +103,7 @@ def test_compound_balance(
         ),
     ],
 )
-def test_compound_resource_producer(
+def test_compound_add_resource_producer(
     processor_list: List[Processor],
     producer: Processor,
     expected_processor_list: List[Processor],
@@ -127,7 +129,7 @@ def test_compound_resource_producer(
         ),
     ],
 )
-def test_compound_resource_consumer(
+def test_compound_add_resource_consumer(
     processor_list: List[Processor],
     consumer: Processor,
     expected_processor_list: List[Processor],
@@ -153,7 +155,7 @@ def test_compound_resource_consumer(
         ),
     ],
 )
-def test_compound_calorie_producer(
+def test_compound_add_calorie_producer(
     processor_list: List[Processor],
     calorie_processor: CalorieProcessor,
     expected_processor_list: List[Processor],
@@ -179,7 +181,7 @@ def test_compound_calorie_producer(
         ),
     ],
 )
-def test_compound_calorie_consumer(
+def test_compound_add_calorie_consumer(
     processor_list: List[Processor],
     calorie_processor: CalorieProcessor,
     expected_processor_list: List[Processor],
@@ -194,28 +196,116 @@ def test_compound_calorie_consumer(
     "processor_list, expected_data",
     [
         ([], []),
-        ([TofuRecipe(amount=2)], [{"name": "TofuRecipe", "amount": 2.0}]),
         (
-            [TofuRecipe(amount=2), SpicyTofuRecipe(amount=1)],
+            [TofuRecipe(amount=2)],
             [
-                {"name": "TofuRecipe", "amount": 2.0},
-                {"name": "SpicyTofuRecipe", "amount": 1.0},
+                {
+                    "location": {
+                        "module": "bionic.recipes.tofu_recipe",
+                        "name": "TofuRecipe"
+                    },
+                    "params": {"amount": 2.0},
+                },
+            ],
+        ),
+        (
+            [NoshSprout(amount=1, domesticated=True)],
+            [
+                {
+                    "location": {
+                        "module": "bionic.plants.nosh_sprout",
+                        "name": "NoshSprout"
+                    },
+                    "params": {"amount": 1.0, "domesticated": True},
+                },
             ],
         ),
         (
             [TofuRecipe(amount=2), TofuRecipe(amount=1)],
             [
-                {"name": "TofuRecipe", "amount": 2.0},
-                {"name": "TofuRecipe", "amount": 1.0},
-            ]
+                {
+                    "location": {
+                        "module": "bionic.recipes.tofu_recipe",
+                        "name": "TofuRecipe"
+                    },
+                    "params": {"amount": 2.0},
+                },
+                {
+                    "location": {
+                        "module": "bionic.recipes.tofu_recipe",
+                        "name": "TofuRecipe"
+                    },
+                    "params": {"amount": 1.0},
+                },
+            ],
         ),
     ],
 )
-def test_save_to_file(processor_list: List[Processor], expected_data: Dict[str, float]):
+def test_compound_save_to_file(
+    processor_list: List[Processor], expected_data: List[dict]
+):
     """Test save to file"""
     compound = Compound(processor_list)
-    file_name = "test.file"
-    compound.save_to_file(file_name)
-    with open(file_name, encoding="utf-8") as file:
+    compound.save_to_file(TEST_FILE_NAME)
+    with open(TEST_FILE_NAME, encoding="utf-8") as file:
         data = json.load(file)
     assert data == expected_data
+
+
+@pytest.mark.parametrize(
+    "file_data, expected_processor_list",
+    [
+        ([], []),
+        (
+            [
+                {
+                    "location": {
+                        "module": "bionic.recipes.tofu_recipe",
+                        "name": "TofuRecipe"
+                    },
+                    "params": {"amount": 2.0},
+                },
+            ],
+            [TofuRecipe(amount=2)],
+        ),
+        (
+            [
+                {
+                    "location": {
+                        "module": "bionic.plants.nosh_sprout",
+                        "name": "NoshSprout"
+                    },
+                    "params": {"amount": 1.0, "domesticated": True},
+                },
+            ],
+            [NoshSprout(amount=1, domesticated=True)],
+        ),
+        (
+            [
+                {
+                    "location": {
+                        "module": "bionic.recipes.tofu_recipe",
+                        "name": "TofuRecipe"
+                    },
+                    "params": {"amount": 2.0},
+                },
+                {
+                    "location": {
+                        "module": "bionic.recipes.tofu_recipe",
+                        "name": "TofuRecipe"
+                    },
+                    "params": {"amount": 1.0},
+                },
+            ],
+            [TofuRecipe(amount=2), TofuRecipe(amount=1)],
+        ),
+    ],
+)
+def test_compound_from_file(
+    file_data: List[dict], expected_processor_list: List[Processor]
+):
+    """Test save to file"""
+    with open(TEST_FILE_NAME, mode="w", encoding="utf-8") as file:
+        json.dump(file_data, file)
+    compound = Compound.from_file(TEST_FILE_NAME)
+    assert compound.processor_list == expected_processor_list
