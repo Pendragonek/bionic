@@ -1,7 +1,7 @@
 """Production"""
 
-from bionic.buildings.geyser import Geyser
-from bionic.resources.resource import Resource
+from bionic.processors.buildings import Geyser
+from bionic.resources import Resource
 
 
 def calculate_geyser_average_production(geyser: Geyser) -> Resource:

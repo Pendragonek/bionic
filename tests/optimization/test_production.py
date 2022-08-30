@@ -2,9 +2,9 @@
 
 import pytest
 
-from bionic.buildings.geyser import Geyser
-from bionic.elements.hydrogen import Hydrogen
 from bionic.optimization.production import calculate_geyser_average_production
+from bionic.processors.buildings import Geyser
+from bionic.resources.elements import Hydrogen
 
 
 @pytest.mark.parametrize(

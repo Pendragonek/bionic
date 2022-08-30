@@ -4,9 +4,8 @@ from typing import List, Type
 
 import pytest
 
-from bionic.elements.element import Element
-from bionic.resources.resource_bank import ResourceBank
-from bionic.elements.water import Water
+from bionic.resources import ResourceBank
+from bionic.resources.elements import Element, Water
 
 
 @pytest.mark.parametrize(

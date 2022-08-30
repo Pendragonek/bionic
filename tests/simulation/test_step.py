@@ -4,13 +4,14 @@ from typing import List
 
 import pytest
 
-from bionic.buildings.steam_turbine import SteamTurbine
-from bionic.elements.element import Element
-from bionic.resources.resource_bank import ResourceBank
-from bionic.elements.steam import Steam
-from bionic.elements.water import Water
+from bionic.processors.buildings import SteamTurbine
+from bionic.resources import ResourceBank
+from bionic.resources.elements import Element, Steam, Water
 from bionic.simulation.step import simulation_step
-from tests.buildings.test_geyser import TEST_GEYSER, TEST_GEYSER_OUTPUT_ELEMENT
+from tests.processors.buildings.test_geyser import (
+    TEST_GEYSER,
+    TEST_GEYSER_OUTPUT_ELEMENT,
+)
 
 
 @pytest.mark.parametrize(

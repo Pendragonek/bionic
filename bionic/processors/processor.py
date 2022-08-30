@@ -5,7 +5,7 @@ from typing import List
 
 from pydantic import BaseModel
 
-from bionic.resources.resource import Resource
+from bionic.resources import Resource
 
 
 class Processor(BaseModel, ABC):

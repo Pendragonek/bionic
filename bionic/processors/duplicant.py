@@ -2,10 +2,9 @@
 
 from typing import List
 
-from bionic.elements.carbon_dioxide import CarbonDioxide
-from bionic.elements.oxygen import Oxygen
 from bionic.processors.calorie_processor import CalorieProcessor
-from bionic.resources.resource import Resource
+from bionic.resources import Resource
+from bionic.resources.elements import CarbonDioxide, Oxygen
 
 
 class Duplicant(CalorieProcessor):
