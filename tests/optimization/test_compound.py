@@ -79,7 +79,7 @@ def test_compound_balance(
         ),
         (
             [SpicyTofuRecipe(amount=1.1)],
-            TofuRecipe(),
+            TofuRecipe(amount=0.5),
             [SpicyTofuRecipe(amount=1.1), TofuRecipe(amount=1.1)],
         ),
         (
@@ -115,7 +115,7 @@ def test_compound_add_resource_producer(
         ),
         (
             [TofuRecipe(amount=1.1)],
-            SpicyTofuRecipe(),
+            SpicyTofuRecipe(amount=0.5),
             [TofuRecipe(amount=1.1), SpicyTofuRecipe(amount=1.1)],
         ),
     ],
@@ -141,7 +141,7 @@ def test_compound_add_resource_consumer(
         ),
         (
             [Duplicant(amount=8)],
-            SpicyTofuRecipe(amount=2),
+            SpicyTofuRecipe(amount=20),
             [Duplicant(amount=8), SpicyTofuRecipe(amount=2)],
         ),
     ],
@@ -167,7 +167,7 @@ def test_compound_add_calorie_producer(
         ),
         (
             [TofuRecipe(amount=3), SpicyTofuRecipe(amount=3)],
-            Duplicant(),
+            Duplicant(amount=5),
             [TofuRecipe(amount=3), SpicyTofuRecipe(amount=3), Duplicant(amount=12)],
         ),
     ],

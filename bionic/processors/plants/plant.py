@@ -3,11 +3,11 @@
 from abc import abstractmethod
 from typing import List, Optional
 
-from bionic.processors import Processor
+from bionic.processors import CalorieProcessor
 from bionic.resources import Resource
 
 
-class Plant(Processor):
+class Plant(CalorieProcessor):
     """Plant class"""
 
     domesticated: bool = False
@@ -33,14 +33,6 @@ class Plant(Processor):
         """Crop property"""
 
     @property
-    def resource_production_per_unit(self) -> List[Resource]:
-        """Resource production per unit property"""
-        base_production = self.crop / self.growth_speed
-        if self.domesticated:
-            base_production *= 4
-        return [base_production]
-
-    @property
     def resource_consumption_per_unit(self) -> List[Resource]:
         """Resource consumption per unit property"""
         consumption = []
@@ -50,3 +42,11 @@ class Plant(Processor):
             if self.fertilizer is not None:
                 consumption.append(self.fertilizer)
         return consumption
+
+    @property
+    def resource_production_per_unit(self) -> List[Resource]:
+        """Resource production per unit property"""
+        base_production = self.crop / self.growth_speed
+        if self.domesticated:
+            base_production *= 4
+        return [base_production]
