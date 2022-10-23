@@ -4,8 +4,7 @@ from typing import List
 
 from bionic.processors import Processor
 from bionic.resources import Resource
-from bionic.resources.elements import CarbonDioxide, PollutedWater
-from bionic.resources.elements.natural_gas import NaturalGas
+from bionic.resources.elements import CarbonDioxide, NaturalGas, PollutedWater
 
 
 class NaturalGasGenerator(Processor):

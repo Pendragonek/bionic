@@ -1,30 +1,30 @@
-"""Pip"""
+"""Drecko"""
 
 from bionic.processors.critters.critter import Critter
-from bionic.resources import Lumber, Resource
-from bionic.resources.elements import Dirt
-from bionic.resources.food import Meat
+from bionic.resources import Resource
+from bionic.resources.elements import Phosphorite
+from bionic.resources.food import Meat, PinchaPeppernut
 
 
-class Pip(Critter):
-    """Pip class"""
+class Drecko(Critter):
+    """Drecko class"""
 
     @property
     def diet(self) -> Resource:
         """Diet property"""
-        return Lumber(amount=135000)
+        return PinchaPeppernut(amount=4 * 0.09)
 
     @property
     def excretion(self) -> Resource:
         """Excretion property"""
-        return Dirt(amount=20000)
+        return Phosphorite(amount=10000)
 
     @property
     def max_age(self) -> int:
         """Max age property"""
-        return 100
+        return 150
 
     @property
     def drop(self) -> Resource:
         """Drop property"""
-        return Meat(amount=1)
+        return Meat(amount=2)

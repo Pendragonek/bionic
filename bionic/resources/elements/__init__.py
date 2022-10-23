@@ -6,6 +6,7 @@ from bionic.resources.elements.element import Element
 from bionic.resources.elements.ethanol import Ethanol
 from bionic.resources.elements.hydrogen import Hydrogen
 from bionic.resources.elements.igneous_rock import IgneousRock
+from bionic.resources.elements.natural_gas import NaturalGas
 from bionic.resources.elements.oxygen import Oxygen
 from bionic.resources.elements.phosphorite import Phosphorite
 from bionic.resources.elements.polluted_dirt import PollutedDirt
