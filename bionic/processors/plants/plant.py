@@ -19,7 +19,7 @@ class Plant(CalorieProcessor):
 
     @property
     @abstractmethod
-    def irrigation(self) -> Resource:
+    def irrigation(self) -> Optional[Resource]:
         """Irrigation property"""
 
     @property

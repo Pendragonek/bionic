@@ -1,21 +1,37 @@
 """Geyser class"""
 
-from pydantic import BaseModel
+from typing import List
 
-from bionic.resources import ResourceBank
+from bionic.processors import Processor
+from bionic.resources import Resource, ResourceBank
 from bionic.resources.elements import Element
 
 CYCLE_LENGTH = 600
 
 
-class Geyser(BaseModel):
+class Geyser(Processor):
     """Geyser class"""
 
+    amount = 1.0
     output_element: Element
     eruption_time: int
     eruption_period: int
     activity_time: float
     activity_period: float
+
+    @property
+    def resource_consumption_per_unit(self) -> List[Resource]:
+        """Resource consumption per unit property"""
+        return []
+
+    @property
+    def resource_production_per_unit(self) -> List[Resource]:
+        """Resource production per unit property"""
+        return [
+            self.output_element * CYCLE_LENGTH
+            * self.eruption_time / self.eruption_period
+            * self.activity_time / self.activity_period
+        ]
 
     def is_erupting(self, time: int) -> bool:
         """Return if geyser is erupting based on a given time"""
