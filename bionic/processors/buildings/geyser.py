@@ -28,9 +28,12 @@ class Geyser(Processor):
     def resource_production_per_unit(self) -> List[Resource]:
         """Resource production per unit property"""
         return [
-            self.output_element * CYCLE_LENGTH
-            * self.eruption_time / self.eruption_period
-            * self.activity_time / self.activity_period
+            self.output_element
+            * CYCLE_LENGTH
+            * self.eruption_time
+            / self.eruption_period
+            * self.activity_time
+            / self.activity_period
         ]
 
     def is_erupting(self, time: int) -> bool:

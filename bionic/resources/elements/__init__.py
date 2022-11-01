@@ -11,8 +11,8 @@ from bionic.resources.elements.natural_gas import NaturalGas
 from bionic.resources.elements.oxygen import Oxygen
 from bionic.resources.elements.phosphorite import Phosphorite
 from bionic.resources.elements.polluted_dirt import PollutedDirt
-from bionic.resources.elements.polluted_water import PollutedWater
 from bionic.resources.elements.polluted_oxygen import PollutedOxygen
+from bionic.resources.elements.polluted_water import PollutedWater
 from bionic.resources.elements.salt_water import SaltWater
 from bionic.resources.elements.slime import Slime
 from bionic.resources.elements.steam import Steam

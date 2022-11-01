@@ -24,7 +24,7 @@ class CalorieProcessor(Processor):
     @property
     def calorie_consumption_per_unit(self) -> float:
         """Calorie consumption per unit property"""
-        calorie_consumption = 0
+        calorie_consumption = 0.0
         for consumed_resource in self.resource_consumption_per_unit:
             if isinstance(consumed_resource, Food):
                 calorie_consumption += consumed_resource.calories
@@ -33,7 +33,7 @@ class CalorieProcessor(Processor):
     @property
     def calorie_production_per_unit(self) -> float:
         """Calorie production per unit property"""
-        calorie_production = 0
+        calorie_production = 0.0
         for produced_resource in self.resource_production_per_unit:
             if isinstance(produced_resource, Food):
                 calorie_production += produced_resource.calories
