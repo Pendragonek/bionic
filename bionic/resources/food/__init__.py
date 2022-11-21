@@ -1,5 +1,6 @@
 """Food"""
 
+from bionic.resources.food.barbeque import Barbeque
 from bionic.resources.food.bristle_berry import BristleBerry
 from bionic.resources.food.food import Food
 from bionic.resources.food.fried_mushroom import FriedMushroom

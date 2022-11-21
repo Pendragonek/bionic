@@ -1,5 +1,6 @@
 """Recipes"""
 
+from bionic.processors.recipes.barbeque_recipe import BarbequeRecipe
 from bionic.processors.recipes.fried_mushroom_recipe import FriedMushroomRecipe
 from bionic.processors.recipes.gristle_berry_recipe import GristleBerryRecipe
 from bionic.processors.recipes.mushroom_wrap_recipe import MushroomWrapRecipe
