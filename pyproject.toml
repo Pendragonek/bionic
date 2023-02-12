@@ -7,14 +7,14 @@ license = "MIT"
 
 [tool.poetry.dependencies]
 python = "^3.8"
-pydantic = "^1.10.2"
+pydantic = "^1.10.4"
 
-[tool.poetry.dev-dependencies]
-pytest = "^7.2.0"
-black = "^22.10.0"
-isort = "^5.10.1"
-pylint = "^2.15.5"
-mypy = "^0.982"
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.2.1"
+black = "^23.1.0"
+isort = "^5.12.0"
+pylint = "^2.16.1"
+mypy = "^1.0.0"
 
 [tool.pylint.base]
 max-line-length = 88
