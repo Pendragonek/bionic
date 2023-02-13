@@ -17,3 +17,23 @@ from bionic.resources.elements.salt_water import SaltWater
 from bionic.resources.elements.slime import Slime
 from bionic.resources.elements.steam import Steam
 from bionic.resources.elements.water import Water
+
+
+element_list = [
+    CarbonDioxide,
+    Chlorine,
+    Dirt,
+    Ethanol,
+    Hydrogen,
+    IgneousRock,
+    NaturalGas,
+    Oxygen,
+    Phosphorite,
+    PollutedDirt,
+    PollutedOxygen,
+    PollutedWater,
+    SaltWater,
+    Slime,
+    Steam,
+    Water,
+]
