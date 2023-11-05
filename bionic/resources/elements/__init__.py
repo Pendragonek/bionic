@@ -18,7 +18,6 @@ from bionic.resources.elements.slime import Slime
 from bionic.resources.elements.steam import Steam
 from bionic.resources.elements.water import Water
 
-
 element_list = [
     CarbonDioxide,
     Chlorine,

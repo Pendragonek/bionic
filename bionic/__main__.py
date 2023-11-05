@@ -9,6 +9,7 @@ from bionic.resources.elements import element_list
 
 class ResourceButton(Button):
     """Resource button"""
+
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.background_color = 1, 1, 0, 1
@@ -17,6 +18,7 @@ class ResourceButton(Button):
 
 class ResourceLayout(BoxLayout):
     """Resource layout"""
+
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.orientation = "vertical"
@@ -32,5 +34,5 @@ class BionicApp(App):
         return ResourceLayout()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     BionicApp().run()
