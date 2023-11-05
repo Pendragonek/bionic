@@ -34,5 +34,9 @@ class BionicApp(App):
         return ResourceLayout()
 
 
-if __name__ == "__main__":
+def main():
     BionicApp().run()
+
+
+if __name__ == "__main__":
+    main()
