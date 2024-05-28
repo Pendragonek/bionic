@@ -6,7 +6,7 @@ authors = ["Pendragonek <mateuszlekner@gmail.com>"]
 license = "MIT"
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.10"
 kivy = "^2.3.0"
 pydantic = "^2.7.1"
 
