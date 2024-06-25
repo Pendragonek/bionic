@@ -8,14 +8,14 @@ license = "MIT"
 [tool.poetry.dependencies]
 python = "^3.10"
 kivy = "^2.3.0"
-pydantic = "^2.7.1"
+pydantic = "^2.7.4"
 
 [tool.poetry.group.dev.dependencies]
-pytest = "^8.2.0"
+pytest = "^8.2.2"
 black = "^24.4.2"
 isort = "^5.13.2"
-pylint = "^3.1.0"
-mypy = "^1.10.0"
+pylint = "^3.2.3"
+mypy = "^1.10.1"
 
 [tool.pylint.base]
 max-line-length = 88
