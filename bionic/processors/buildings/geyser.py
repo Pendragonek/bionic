@@ -10,7 +10,7 @@ CYCLE_LENGTH = 600
 class Geyser(Processor):
     """Geyser class."""
 
-    amount = 1.0
+    amount: float = 1.0
     output_element: Element
     eruption_time: int
     eruption_period: int
