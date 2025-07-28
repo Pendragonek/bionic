@@ -1,40 +1,44 @@
-"""Plant"""
+"""Plant."""
+
+from __future__ import annotations
 
 from abc import abstractmethod
-from typing import List, Optional
+from typing import TYPE_CHECKING
 
 from bionic.processors import CalorieProcessor
-from bionic.resources import Resource
+
+if TYPE_CHECKING:
+    from bionic.resources import Resource
 
 
 class Plant(CalorieProcessor):
-    """Plant class"""
+    """Plant class."""
 
     domesticated: bool = False
 
     @property
     @abstractmethod
     def growth_speed(self) -> int:
-        """Growth speed property"""
+        """Growth speed property."""
 
     @property
     @abstractmethod
-    def irrigation(self) -> Optional[Resource]:
-        """Irrigation property"""
+    def irrigation(self) -> Resource | None:
+        """Irrigation property."""
 
     @property
     @abstractmethod
-    def fertilizer(self) -> Optional[Resource]:
-        """Fertilizer property"""
+    def fertilizer(self) -> Resource | None:
+        """Fertilizer property."""
 
     @property
     @abstractmethod
     def crop(self) -> Resource:
-        """Crop property"""
+        """Crop property."""
 
     @property
-    def resource_consumption_per_unit(self) -> List[Resource]:
-        """Resource consumption per unit property"""
+    def resource_consumption_per_unit(self) -> list[Resource]:
+        """Resource consumption per unit property."""
         consumption = []
         if self.domesticated:
             if self.irrigation is not None:
@@ -44,8 +48,8 @@ class Plant(CalorieProcessor):
         return consumption
 
     @property
-    def resource_production_per_unit(self) -> List[Resource]:
-        """Resource production per unit property"""
+    def resource_production_per_unit(self) -> list[Resource]:
+        """Resource production per unit property."""
         base_production = self.crop / self.growth_speed
         if self.domesticated:
             base_production *= 4

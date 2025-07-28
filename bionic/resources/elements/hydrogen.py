@@ -1,12 +1,12 @@
-"""Hydrogen"""
+"""Hydrogen."""
 
 from bionic.resources.elements.element import Element
 
 
 class Hydrogen(Element):
-    """Hydrogen class"""
+    """Hydrogen class."""
 
     @property
     def shc(self) -> float:
-        """Return SHC of element"""
+        """Return SHC of element."""
         return 2.400

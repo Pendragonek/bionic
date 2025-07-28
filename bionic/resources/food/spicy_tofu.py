@@ -1,22 +1,22 @@
-"""Spicy tofu"""
+"""Spicy tofu."""
 
 from bionic.resources.food.food import Food
 
 
 class SpicyTofu(Food):
-    """Spicy tofu class"""
+    """Spicy tofu class."""
 
     @property
     def calories_per_unit(self) -> int:
-        """Calories per unit property"""
+        """Calories per unit property."""
         return 4000
 
     @property
     def quality(self) -> int:
-        """Quality property"""
+        """Quality property."""
         return 5
 
     @property
     def spoil_time(self) -> int:
-        """Spoil time property"""
+        """Spoil time property."""
         return 2

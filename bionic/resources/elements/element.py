@@ -1,4 +1,4 @@
-"""Element"""
+"""Element."""
 
 from abc import abstractmethod
 
@@ -6,22 +6,22 @@ from bionic.resources import Resource
 
 
 class Element(Resource):
-    """Element class"""
+    """Element class."""
 
     temperature: float = 0
 
     @property
     @abstractmethod
     def shc(self) -> float:
-        """Return SHC of the element"""
+        """Return SHC of the element."""
 
     @property
     def heat(self) -> float:
-        """Return heat amount"""
+        """Return heat amount."""
         return self.shc * self.amount * self.temperature
 
     def temperature_add(self, other: "Element") -> "Element":
-        """Temperature add"""
+        """Temperature add."""
         element_type = type(self)
         if not isinstance(other, element_type):
             raise TypeError
@@ -33,7 +33,7 @@ class Element(Resource):
 
 
 def calculate_combined_element_temperature(*element_list: Element) -> float:
-    """Calculate combined temperature of two entities"""
+    """Calculate combined temperature of two entities."""
     total_heat = 0.0
     total_heat_capacity = 0.0
     for element in element_list:

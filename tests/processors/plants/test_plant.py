@@ -1,5 +1,4 @@
-"""Test plant"""
-from typing import List
+"""Test plant."""
 
 import pytest
 
@@ -12,7 +11,7 @@ from bionic.resources.food import BristleBerry, NoshBean
 
 
 @pytest.mark.parametrize(
-    "plant, expected_production, expected_consumption",
+    ("plant", "expected_production", "expected_consumption"),
     [
         (NoshSprout(), [NoshBean(amount=1 / 7)], []),
         (
@@ -29,9 +28,9 @@ from bionic.resources.food import BristleBerry, NoshBean
 )
 def test_plant(
     plant: Plant,
-    expected_production: List[Resource],
-    expected_consumption: List[Resource],
-):
-    """Test plant"""
+    expected_production: list[Resource],
+    expected_consumption: list[Resource],
+) -> None:
+    """Test plant."""
     assert plant.resource_production_per_unit == expected_production
     assert plant.resource_consumption_per_unit == expected_consumption

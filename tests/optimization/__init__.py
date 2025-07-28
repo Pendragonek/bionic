@@ -1,1 +1,1 @@
-"""Optimization tests"""
+"""Optimization tests."""

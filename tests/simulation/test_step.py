@@ -1,6 +1,4 @@
-"""Test simulation step"""
-
-from typing import List
+"""Test simulation step."""
 
 import pytest
 
@@ -15,7 +13,7 @@ from tests.processors.buildings.test_geyser import (
 
 
 @pytest.mark.parametrize(
-    "current_time, initial_state, expected_state",
+    ("current_time", "initial_state", "expected_state"),
     [
         (0, [], [TEST_GEYSER_OUTPUT_ELEMENT]),
         (
@@ -26,9 +24,11 @@ from tests.processors.buildings.test_geyser import (
     ],
 )
 def test_simulation_step(
-    current_time: int, initial_state: List[Element], expected_state: List[Element]
-):
-    """Test simulation step"""
+    current_time: int,
+    initial_state: list[Element],
+    expected_state: list[Element],
+) -> None:
+    """Test simulation step."""
     steam_turbine = SteamTurbine()
     element_bank = ResourceBank(*initial_state)
     simulation_step(steam_turbine, TEST_GEYSER, element_bank, current_time)

@@ -1,1 +1,1 @@
-"""Plants tests"""
+"""Plants tests."""

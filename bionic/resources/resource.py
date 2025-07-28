@@ -1,14 +1,13 @@
-"""Resource"""
+"""Resource."""
 
 from abc import ABC
 from copy import copy
-from typing import Union
 
 from pydantic import BaseModel
 
 
 class Resource(BaseModel, ABC):
-    """Resource class"""
+    """Resource class."""
 
     amount: float = 0
 
@@ -22,12 +21,12 @@ class Resource(BaseModel, ABC):
         resource_copy.amount -= other.amount
         return resource_copy
 
-    def __mul__(self, other: Union[float, int]) -> "Resource":
+    def __mul__(self, other: float) -> "Resource":
         resource_copy = copy(self)
         resource_copy.amount *= other
         return resource_copy
 
-    def __truediv__(self, other: Union[float, int]) -> "Resource":
+    def __truediv__(self, other: float) -> "Resource":
         resource_copy = copy(self)
         resource_copy.amount /= other
         return resource_copy

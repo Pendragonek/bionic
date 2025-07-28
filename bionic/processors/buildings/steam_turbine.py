@@ -1,16 +1,16 @@
-"""Steam turbine class"""
+"""Steam turbine class."""
 
 from bionic.resources import ResourceBank
 from bionic.resources.elements import Steam, Water
 
 
 class SteamTurbine:
-    """Steam turbine class"""
+    """Steam turbine class."""
 
     heat: float = 4
 
-    def process(self, resource_bank: ResourceBank):
-        """Process elements"""
+    def process(self, resource_bank: ResourceBank) -> None:
+        """Process elements."""
         max_mass = 2000
         steam_element = resource_bank.get(Steam)
         if not steam_element.amount or steam_element.temperature < 125:
@@ -21,5 +21,5 @@ class SteamTurbine:
         else:
             resource_bank.add(Water(amount=max_mass, temperature=95))
             resource_bank.subtract(
-                Steam(amount=max_mass, temperature=steam_element.temperature)
+                Steam(amount=max_mass, temperature=steam_element.temperature),
             )

@@ -1,4 +1,4 @@
-"""Buildings"""
+"""Buildings."""
 
 from bionic.processors.buildings.compost import Compost
 from bionic.processors.buildings.ethanol_distiller import EthanolDistiller

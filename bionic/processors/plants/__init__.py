@@ -1,4 +1,4 @@
-"""Plants"""
+"""Plants."""
 
 from bionic.processors.plants.arbor_tree import ArborTree
 from bionic.processors.plants.bristle_blossom import BristleBlossom

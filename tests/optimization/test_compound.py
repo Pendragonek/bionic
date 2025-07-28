@@ -1,7 +1,6 @@
-"""Test compound"""
+"""Test compound."""
 
 import json
-from typing import List
 
 import pytest
 
@@ -17,7 +16,7 @@ TEST_FILE_NAME = "test_file.json"
 
 
 @pytest.mark.parametrize(
-    "processor_list, expected_resource_balance, expected_calories",
+    ("processor_list", "expected_resource_balance", "expected_calories"),
     [
         (
             [TofuRecipe(amount=4)],
@@ -58,11 +57,11 @@ TEST_FILE_NAME = "test_file.json"
     ],
 )
 def test_compound_balance(
-    processor_list: List[Processor],
-    expected_resource_balance: List[Resource],
+    processor_list: list[Processor],
+    expected_resource_balance: list[Resource],
     expected_calories: float,
-):
-    """Test compound"""
+) -> None:
+    """Test compound."""
     compound = Compound(processor_list)
     expected_resource_balance_bank = ResourceBank(*expected_resource_balance)
     assert compound.resource_balance == expected_resource_balance_bank
@@ -70,7 +69,7 @@ def test_compound_balance(
 
 
 @pytest.mark.parametrize(
-    "processor_list, producer, expected_processor_list",
+    ("processor_list", "producer", "expected_processor_list"),
     [
         (
             [SpicyTofuRecipe(amount=1)],
@@ -95,18 +94,18 @@ def test_compound_balance(
     ],
 )
 def test_compound_add_resource_producer(
-    processor_list: List[Processor],
+    processor_list: list[Processor],
     producer: Processor,
-    expected_processor_list: List[Processor],
-):
-    """Test compound resource producer"""
+    expected_processor_list: list[Processor],
+) -> None:
+    """Test compound resource producer."""
     compound = Compound(processor_list)
     compound.add_resource_producer(producer)
     assert compound.processor_list == expected_processor_list
 
 
 @pytest.mark.parametrize(
-    "processor_list, consumer, expected_processor_list",
+    ("processor_list", "consumer", "expected_processor_list"),
     [
         (
             [TofuRecipe(amount=1)],
@@ -121,18 +120,18 @@ def test_compound_add_resource_producer(
     ],
 )
 def test_compound_add_resource_consumer(
-    processor_list: List[Processor],
+    processor_list: list[Processor],
     consumer: Processor,
-    expected_processor_list: List[Processor],
-):
-    """Test compound resource consumer"""
+    expected_processor_list: list[Processor],
+) -> None:
+    """Test compound resource consumer."""
     compound = Compound(processor_list)
     compound.add_resource_consumer(consumer)
     assert compound.processor_list == expected_processor_list
 
 
 @pytest.mark.parametrize(
-    "processor_list, calorie_processor, expected_processor_list",
+    ("processor_list", "calorie_processor", "expected_processor_list"),
     [
         (
             [Duplicant(amount=9)],
@@ -147,18 +146,18 @@ def test_compound_add_resource_consumer(
     ],
 )
 def test_compound_add_calorie_producer(
-    processor_list: List[Processor],
+    processor_list: list[Processor],
     calorie_processor: CalorieProcessor,
-    expected_processor_list: List[Processor],
-):
-    """Test compound calorie producer"""
+    expected_processor_list: list[Processor],
+) -> None:
+    """Test compound calorie producer."""
     compound = Compound(processor_list)
     compound.add_calorie_producer(calorie_processor)
     assert compound.processor_list == expected_processor_list
 
 
 @pytest.mark.parametrize(
-    "processor_list, calorie_processor, expected_processor_list",
+    ("processor_list", "calorie_processor", "expected_processor_list"),
     [
         (
             [TofuRecipe(amount=4)],
@@ -173,18 +172,18 @@ def test_compound_add_calorie_producer(
     ],
 )
 def test_compound_add_calorie_consumer(
-    processor_list: List[Processor],
+    processor_list: list[Processor],
     calorie_processor: CalorieProcessor,
-    expected_processor_list: List[Processor],
-):
-    """Test compound calorie consumer"""
+    expected_processor_list: list[Processor],
+) -> None:
+    """Test compound calorie consumer."""
     compound = Compound(processor_list)
     compound.add_calorie_consumer(calorie_processor)
     assert compound.processor_list == expected_processor_list
 
 
 @pytest.mark.parametrize(
-    "processor_list, expected_data",
+    ("processor_list", "expected_data"),
     [
         ([], []),
         (
@@ -233,9 +232,10 @@ def test_compound_add_calorie_consumer(
     ],
 )
 def test_compound_save_to_file(
-    processor_list: List[Processor], expected_data: List[dict]
-):
-    """Test save to file"""
+    processor_list: list[Processor],
+    expected_data: list[dict],
+) -> None:
+    """Test save to file."""
     compound = Compound(processor_list)
     compound.save_to_file(TEST_FILE_NAME)
     with open(TEST_FILE_NAME, encoding="utf-8") as file:
@@ -244,7 +244,7 @@ def test_compound_save_to_file(
 
 
 @pytest.mark.parametrize(
-    "file_data, expected_processor_list",
+    ("file_data", "expected_processor_list"),
     [
         ([], []),
         (
@@ -293,9 +293,10 @@ def test_compound_save_to_file(
     ],
 )
 def test_compound_from_file(
-    file_data: List[dict], expected_processor_list: List[Processor]
-):
-    """Test save to file"""
+    file_data: list[dict],
+    expected_processor_list: list[Processor],
+) -> None:
+    """Test save to file."""
     with open(TEST_FILE_NAME, mode="w", encoding="utf-8") as file:
         json.dump(file_data, file)
     compound = Compound.from_file(TEST_FILE_NAME)

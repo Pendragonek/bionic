@@ -1,1 +1,1 @@
-"""BIONIC tests"""
+"""BIONIC tests."""

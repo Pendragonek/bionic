@@ -1,1 +1,1 @@
-"""Food tests"""
+"""Food tests."""

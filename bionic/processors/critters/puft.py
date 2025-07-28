@@ -1,4 +1,4 @@
-"""Puft"""
+"""Puft."""
 
 from bionic.processors.critters.critter import Critter
 from bionic.resources import Resource
@@ -8,38 +8,38 @@ from bionic.resources.food import Meat
 
 
 class Puft(Critter):
-    """Puft class"""
+    """Puft class."""
 
     @property
     def diet(self) -> Resource:
-        """Diet property"""
+        """Diet property."""
         return PollutedOxygen(amount=50000)
 
     @property
     def excretion(self) -> Resource:
-        """Excretion property"""
+        """Excretion property."""
         return Slime(amount=47500)
 
     @property
     def max_age(self) -> int:
-        """Max age property"""
+        """Max age property."""
         return 75
 
     @property
     def drop(self) -> Resource:
-        """Drop property"""
+        """Drop property."""
         return Meat(amount=1)
 
 
 class SqueakyPuft(Puft):
-    """Squeaky puft class"""
+    """Squeaky puft class."""
 
     @property
     def diet(self) -> Resource:
-        """Diet property"""
+        """Diet property."""
         return Chlorine(amount=30000)
 
     @property
     def excretion(self) -> Resource:
-        """Excretion property"""
+        """Excretion property."""
         return BleachStone(amount=28500)

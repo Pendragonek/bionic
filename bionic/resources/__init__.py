@@ -1,4 +1,4 @@
-"""Resources"""
+"""Resources."""
 
 from bionic.resources.lumber import Lumber
 from bionic.resources.resource import Resource

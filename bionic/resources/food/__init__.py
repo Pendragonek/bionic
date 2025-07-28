@@ -1,4 +1,4 @@
-"""Food"""
+"""Food."""
 
 from bionic.resources.food.barbeque import Barbeque
 from bionic.resources.food.bristle_berry import BristleBerry

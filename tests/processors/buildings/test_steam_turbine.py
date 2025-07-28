@@ -1,6 +1,4 @@
-"""Test steam turbine"""
-
-from typing import List
+"""Test steam turbine."""
 
 import pytest
 
@@ -10,7 +8,7 @@ from bionic.resources.elements import Element, Steam, Water
 
 
 @pytest.mark.parametrize(
-    "initial_state, expected_state",
+    ("initial_state", "expected_state"),
     [
         (
             [Steam(amount=4000, temperature=150), Water(amount=1000, temperature=95)],
@@ -27,9 +25,10 @@ from bionic.resources.elements import Element, Steam, Water
     ],
 )
 def test_steam_turbine_process(
-    initial_state: List[Element], expected_state: List[Element]
-):
-    """Test Steam Turbine process"""
+    initial_state: list[Element],
+    expected_state: list[Element],
+) -> None:
+    """Test Steam Turbine process."""
     steam_turbine = SteamTurbine()
     element_bank = ResourceBank(*initial_state)
     steam_turbine.process(element_bank)

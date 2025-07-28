@@ -1,1 +1,1 @@
-"""Buildings tests"""
+"""Buildings tests."""

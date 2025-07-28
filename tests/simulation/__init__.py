@@ -1,1 +1,1 @@
-"""Simulation tests"""
+"""Simulation tests."""

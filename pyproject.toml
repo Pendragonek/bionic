@@ -7,22 +7,29 @@ license = "MIT"
 
 [tool.poetry.dependencies]
 python = "^3.10"
-kivy = "^2.3.0"
-pydantic = "^2.8.2"
+kivy = "^2.3.1"
+pydantic = "^2.11.7"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.2.2"
-black = "^24.4.2"
-isort = "^5.13.2"
-pylint = "^3.2.3"
-mypy = "^1.10.1"
+pre-commit = "^4.2.0"
 
-[tool.pylint.base]
-max-line-length = 88
-extension-pkg-allow-list = ["pydantic"]
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    "D",
+    "ANN001",
+    "ANN003",
+    "ANN201",
+    "F401",
+    "FBT001",
+    "PTH123",
+    "PLW1641",
+    "PLR2004",
+]
 
-[tool.isort]
-profile = 'black'
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101"]
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

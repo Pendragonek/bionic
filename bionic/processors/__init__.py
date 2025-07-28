@@ -1,4 +1,4 @@
-"""Processors"""
+"""Processors."""
 
 from bionic.processors.calorie_processor import CalorieProcessor
 from bionic.processors.duplicant import Duplicant

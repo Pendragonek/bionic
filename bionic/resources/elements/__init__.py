@@ -1,4 +1,4 @@
-"""Elements"""
+"""Elements."""
 
 from bionic.resources.elements.carbon_dioxide import CarbonDioxide
 from bionic.resources.elements.chlorine import Chlorine

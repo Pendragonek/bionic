@@ -1,4 +1,4 @@
-"""BIONIC main"""
+"""BIONIC main."""
 
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
@@ -8,18 +8,18 @@ from bionic.resources.elements import element_list
 
 
 class ResourceButton(Button):
-    """Resource button"""
+    """Resource button."""
 
-    def __init__(self, **kwargs):
+    def __init__(self, **kwargs) -> None:
         super().__init__(**kwargs)
         self.background_color = 1, 1, 0, 1
         self.font_size = 70
 
 
 class ResourceLayout(BoxLayout):
-    """Resource layout"""
+    """Resource layout."""
 
-    def __init__(self, **kwargs):
+    def __init__(self, **kwargs) -> None:
         super().__init__(**kwargs)
         self.orientation = "vertical"
         for element in element_list:
@@ -27,14 +27,14 @@ class ResourceLayout(BoxLayout):
 
 
 class BionicApp(App):
-    """Bionic app"""
+    """Bionic app."""
 
     def build(self):
-        """Build app"""
+        """Build app."""
         return ResourceLayout()
 
 
-def main():
+def main() -> None:
     BionicApp().run()
 
 

@@ -1,1 +1,1 @@
-"""Elements tests"""
+"""Elements tests."""

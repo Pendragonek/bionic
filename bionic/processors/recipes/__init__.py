@@ -1,4 +1,4 @@
-"""Recipes"""
+"""Recipes."""
 
 from bionic.processors.recipes.barbeque_recipe import BarbequeRecipe
 from bionic.processors.recipes.fried_mushroom_recipe import FriedMushroomRecipe

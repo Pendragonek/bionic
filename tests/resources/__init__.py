@@ -1,1 +1,1 @@
-"""Resources tests"""
+"""Resources tests."""
