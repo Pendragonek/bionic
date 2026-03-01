@@ -1,39 +1,20 @@
-[tool.poetry]
+[project]
 name = "bionic"
 version = "0.1.0"
 description = "Basically Irreplaceable Oxygen Not Included Calculator"
-authors = ["Pendragonek <mateuszlekner@gmail.com>"]
+authors = [{name="Pendragonek", email="mateuszlekner@gmail.com"}]
 license = "MIT"
-
-[tool.poetry.dependencies]
-python = "^3.10"
-kivy = "^2.3.1"
-pydantic = "^2.12.5"
-
-[tool.poetry.group.dev.dependencies]
-pytest = "^9.0.2"
-pre-commit = "^4.5.1"
-
-[tool.ruff.lint]
-select = ["ALL"]
-ignore = [
-    "D",
-    "ANN001",
-    "ANN003",
-    "ANN201",
-    "F401",
-    "FBT001",
-    "PTH123",
-    "PLW1641",
-    "PLR2004",
+requires-python = ">=3.12, <3.13"
+dependencies = [
+    "kivy>=2.3.1",
+    "pydantic>=2.12.5",
 ]
 
-[tool.ruff.lint.per-file-ignores]
-"tests/*" = ["S101"]
-
-[build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
-
-[tool.poetry.scripts]
+[project.scripts]
 bionic = "bionic.__main__:main"
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.5.1",
+    "pytest>=9.0.2",
+]

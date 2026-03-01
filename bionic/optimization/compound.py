@@ -41,7 +41,7 @@ class Compound:
                     "module": processor.__module__,
                     "name": type(processor).__name__,
                 },
-                "params": processor.dict(),
+                "params": processor.model_dump(),
             }
             saved_data.append(processor_dict)
         with open(file_name, mode="w", encoding="utf-8") as file:
