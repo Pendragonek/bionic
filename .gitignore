@@ -6,3 +6,6 @@
 
 # PyCharm project files
 .idea/
+
+# Build artifacts
+bionic.egg-info/
